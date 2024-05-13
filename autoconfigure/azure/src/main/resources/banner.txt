@@ -1,0 +1,9 @@
+
+`7MM"""Mq.                            mm                      db
+  MM   `MM.                           MM                     ;MM:
+  MM   ,M9 `7Mb,od8 .gP"Ya  ,pP"Ybd mmMMmm ,pW"Wq.          ,V^MM.    M"""MMV `7MM  `7MM  `7Mb,od8 .gP"Ya
+  MMmmdM9    MM' "',M'   Yb 8I   `"   MM  6W'   `Wb        ,M  `MM    '  AMV    MM    MM    MM' "',M'   Yb
+  MM         MM    8M"""""" `YMMMa.   MM  8M     M8        AbmmmqMA     AMV     MM    MM    MM    8M""""""
+  MM         MM    YM.    , L.   I8   MM  YA.   ,A9       A'     VML   AMV  ,   MM    MM    MM    YM.    ,
+.JMML.     .JMML.   `Mbmmd' M9mmmP'   `Mbmo`Ybmd9'      .AMA.   .AMMA.AMMmmmM   `Mbod"YML..JMML.   `Mbmmd'
+Presto ${application.formatted-version}  -  SpringBoot ${spring-boot.formatted-version}

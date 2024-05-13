@@ -1,0 +1,22 @@
+spring:
+  thymeleaf:
+    cache: false
+  cloud:
+    azure:
+      active-directory:
+        enabled: true
+        profile:
+          tenant-id: <TENANT_ID>
+#          environment:
+#            active-directory-endpoint:
+#            microsoft-graph-endpoint:
+        credential:
+          client-id: <CLIENT_ID>
+          client-secret: <CLIENT_SECRET_VALUE, not CLIENT-SECRET>
+        authorization-clients:
+          aad:
+#            authorization-grant-type: client_credentials
+            scopes:
+              - openid
+#              - https://graph.microsoft.com/Analytics.Read
+              - email
