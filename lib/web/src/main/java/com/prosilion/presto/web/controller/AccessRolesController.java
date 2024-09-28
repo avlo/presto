@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @NoArgsConstructor
 @Controller
-public class AuthController implements ErrorController {
+public class AccessRolesController implements ErrorController {
 
   @Secured({ "ROLE_ANONYMOUS", "ANONYMOUS","ROLE_USER", "USER"})
   @GetMapping("/login")
