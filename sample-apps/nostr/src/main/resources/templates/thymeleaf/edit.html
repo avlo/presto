@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <title>Edit Nostr User</title>
+  <link rel="stylesheet" th:href="@{/css/simple.css}"/>
+</head>
+<body>
+<header>Edit Nostr User</header>
+<main>
+  <b>User:</b> <span sec:authentication="principal.username"/>
+  <b>Role(s):</b> <span sec:authentication="principal.authorities"/>
+
+  <form action="#" th:action="@{/edit}" th:object="${user}" method="post">
+    <p>
+      <label>Custom Nostr ExampleUser Attribute - PubKey</label>
+      <input type="text" id="pubKey" placeholder="Custom Nostr User Attribute - PubKey" name="pubKey" th:value="${user.pubKey}">
+    </p>
+    <input type="hidden" id="id" name="id" th:value="${user.id}"/>
+    <input type="submit" value="Save">
+  </form>
+</main>
+<footer>
+  <p>Powered by Presto Security - Prosilion OSS</p>
+</footer>
+</body>
+</html>

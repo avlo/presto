@@ -15,6 +15,7 @@
     <module>lib/web</module>
     <module>lib/jpa</module>
     <module>lib/ldap</module>
+    <module>lib/nostr</module>
     <module>lib/azure</module>
 
     <module>autoconfigure/h2db</module>
@@ -22,6 +23,7 @@
     <module>autoconfigure/web</module>
     <module>autoconfigure/jpa</module>
     <module>autoconfigure/ldap</module>
+    <module>autoconfigure/nostr</module>
     <module>autoconfigure/azure</module>
 
     <module>starter/h2db</module>
@@ -29,13 +31,15 @@
     <module>starter/web</module>
     <module>starter/jpa</module>
     <module>starter/ldap</module>
+    <module>starter/nostr</module>
     <module>starter/azure</module>
 
-<!--    <module>sample-apps/h2db</module>-->
-<!--    <module>sample-apps/core</module>-->
-<!--    <module>sample-apps/web</module>-->
+    <!--    <module>sample-apps/h2db</module>-->
+    <!--    <module>sample-apps/core</module>-->
+    <!--    <module>sample-apps/web</module>-->
     <module>sample-apps/jpa</module>
     <module>sample-apps/ldap</module>
+    <module>sample-apps/nostr</module>
     <module>sample-apps/azure</module>
   </modules>
 
