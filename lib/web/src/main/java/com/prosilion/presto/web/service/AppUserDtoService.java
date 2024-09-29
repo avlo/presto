@@ -8,14 +8,4 @@ import java.util.List;
 
 public interface AppUserDtoService {
   List<AppUserDtoIF> getAllAppUsersAsDto();
-
-  default List<AppUserDtoIF> convertAppUserToDto(List<AppUserAuthUser> users) {
-    return users.stream().map(this::mapToUserDto).toList();
-  }
-  default AppUserDtoIF mapToUserDto(AppUserAuthUser appUserAuthUser) {
-    AppUserDtoIF userDto = new AppUserDto();
-    userDto.setUsername(appUserAuthUser.getAuthUserName());
-    userDto.setId(appUserAuthUser.getAppUserId());
-    return userDto;
-  }
 }

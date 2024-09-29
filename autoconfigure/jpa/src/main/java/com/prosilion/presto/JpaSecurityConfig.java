@@ -59,6 +59,7 @@ public class JpaSecurityConfig {
   }
 
   @Bean
+  @ConditionalOnMissingBean
   public AppUserDtoService appUserDtoService(AuthUserService authUserService) {
     return new AppUserDtoServiceImpl(authUserService);
   }

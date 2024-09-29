@@ -1,18 +1,21 @@
-package com.prosilion.presto.web.service;
+package com.prosilion.presto.nostr.service;
 
+import com.prosilion.presto.nostr.dto.model.NostrAppUserDto;
+import com.prosilion.presto.nostr.dto.model.NostrAppUserDtoIF;
 import com.prosilion.presto.security.entity.AppUserAuthUser;
 import com.prosilion.presto.security.service.AuthUserService;
 import com.prosilion.presto.web.model.AppUserDto;
 import com.prosilion.presto.web.model.AppUserDtoIF;
+import com.prosilion.presto.web.service.AppUserDtoService;
 import lombok.NonNull;
 
 import java.util.List;
 
-public class AppUserDtoServiceImpl implements AppUserDtoService {
+public class NostrAppUserDtoServiceImpl implements AppUserDtoService {
 
   private final AuthUserService authUserService;
 
-  public AppUserDtoServiceImpl(@NonNull AuthUserService authUserService) {
+  public NostrAppUserDtoServiceImpl(@NonNull AuthUserService authUserService) {
     this.authUserService = authUserService;
   }
 
@@ -25,8 +28,8 @@ public class AppUserDtoServiceImpl implements AppUserDtoService {
     return users.stream().map(this::mapToUserDto).toList();
   }
 
-  private AppUserDtoIF mapToUserDto(AppUserAuthUser appUserAuthUser) {
-    AppUserDtoIF userDto = new AppUserDto();
+  AppUserDtoIF mapToUserDto(AppUserAuthUser appUserAuthUser) {
+    NostrAppUserDtoIF userDto = new NostrAppUserDto(new AppUserDto());
     userDto.setUsername(appUserAuthUser.getAuthUserName());
     userDto.setId(appUserAuthUser.getAppUserId());
     return userDto;

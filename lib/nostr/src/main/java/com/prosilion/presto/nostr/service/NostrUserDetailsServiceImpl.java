@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 public class NostrUserDetailsServiceImpl implements NostrUserDetailsService {
   private final AuthUserDetailServiceImpl authUserDetailsService;
 
-  private static final String NOSTR_DEFAULT_ROLE = "ANONYMOUS";
+  private static final String NOSTR_DEFAULT_ROLE = "USER";
 
   public NostrUserDetailsServiceImpl(AuthUserDetailServiceImpl authUserDetailsService) {
     log.info("ADOAUTH2 - Loading AzureUserDetailServiceImpl");

@@ -44,7 +44,9 @@ public class NostrAuthController implements AuthController {
       AppUserAuthUser appUserAuthUser = nostrAuthUserService.createUser(
           nostrAppUserDto.getUsername(),
           nostrAppUserDto.getPassword(),
-          "FIX IN NostrAuthController");
+//          nostrAppUserDto.getPubKey()
+          "NEEDS FIX"
+      );
       log.info("Registered AppUserAuthUser [{}]", appUserAuthUser.getAuthUserName());
       model.addAttribute("user", nostrAppUserDto);
       return "redirect:/login";

@@ -1,11 +1,14 @@
 package com.prosilion.presto;
 
 import com.prosilion.presto.nostr.controller.NostrAuthController;
+import com.prosilion.presto.nostr.service.NostrAppUserDtoServiceImpl;
 import com.prosilion.presto.nostr.service.NostrAuthUserService;
 import com.prosilion.presto.nostr.service.NostrUserDetailsService;
 import com.prosilion.presto.nostr.service.NostrUserDetailsServiceImpl;
 import com.prosilion.presto.security.service.AuthUserDetailServiceImpl;
+import com.prosilion.presto.security.service.AuthUserService;
 import com.prosilion.presto.web.controller.AuthController;
+import com.prosilion.presto.web.service.AppUserDtoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -57,5 +60,10 @@ public class NostrSecurityConfig {
   @Primary
   public NostrUserDetailsService authUserDetailsService(DataSource dataSource, PasswordEncoder passwordEncoder) {
     return new NostrUserDetailsServiceImpl(new AuthUserDetailServiceImpl(dataSource, passwordEncoder));
+  }
+
+  @Bean
+  public AppUserDtoService appUserDtoService(AuthUserService authUserService) {
+    return new NostrAppUserDtoServiceImpl(authUserService);
   }
 }
