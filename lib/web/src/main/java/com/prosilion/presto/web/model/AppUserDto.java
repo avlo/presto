@@ -9,8 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AppUserDto {
-	private Long id;
-	private String username;
-	private String password;
+public class AppUserDto implements AppUserDtoIF {
+  private Long id;
+  private String username;
+  private String password;
 }

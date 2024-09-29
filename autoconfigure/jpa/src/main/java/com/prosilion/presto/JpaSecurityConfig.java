@@ -1,6 +1,8 @@
 package com.prosilion.presto;
 
+import com.prosilion.presto.jpa.controller.JpaAuthController;
 import com.prosilion.presto.security.service.AuthUserService;
+import com.prosilion.presto.web.controller.AuthController;
 import com.prosilion.presto.web.service.AppUserDtoService;
 import com.prosilion.presto.web.service.AppUserDtoServiceImpl;
 import org.slf4j.Logger;
@@ -20,6 +22,12 @@ import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 @EnableWebSecurity
 public class JpaSecurityConfig {
   private static final Logger LOGGER = LoggerFactory.getLogger(JpaSecurityConfig.class);
+
+  @Bean
+  @ConditionalOnMissingBean
+  AuthController authController(AuthUserService authUserService) {
+    return new JpaAuthController(authUserService);
+  }
 
   @Bean
   @ConditionalOnMissingBean
