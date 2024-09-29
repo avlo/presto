@@ -14,12 +14,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-//@Controller
 public class JpaAuthController implements AuthController {
   private static final Logger LOGGER = LoggerFactory.getLogger(JpaAuthController.class);
   private final AuthUserService authUserService;
 
-  //  @Autowired
   public JpaAuthController(AuthUserService authUserService) {
     this.authUserService = authUserService;
   }

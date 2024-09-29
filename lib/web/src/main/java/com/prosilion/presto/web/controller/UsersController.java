@@ -1,6 +1,6 @@
 package com.prosilion.presto.web.controller;
 
-import com.prosilion.presto.web.model.AppUserDto;
+import com.prosilion.presto.web.model.AppUserDtoIF;
 import com.prosilion.presto.web.service.AppUserDtoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,10 +28,10 @@ public class UsersController {
     this.appUserDtoService = appUserDtoService;
   }
 
-  @Secured({ "ROLE_ANONYMOUS", "ANONYMOUS","ROLE_USER", "USER"})
+  @Secured({"ROLE_ANONYMOUS", "ANONYMOUS", "ROLE_USER", "USER"})
   @GetMapping("/users")
   public String users(Model model) {
-    List<AppUserDto> users = appUserDtoService.getAllAppUsersAsDto();
+    List<AppUserDtoIF> users = appUserDtoService.getAllAppUsersAsDto();
     LOGGER.info("Fetched users: {}", users);
     model.addAttribute("environmentlabel", environmentLabel);
     model.addAttribute("users", users);
