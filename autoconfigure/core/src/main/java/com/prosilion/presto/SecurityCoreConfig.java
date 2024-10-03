@@ -2,7 +2,12 @@ package com.prosilion.presto;
 
 import com.prosilion.presto.security.AppUserLocalAuthorities;
 import com.prosilion.presto.security.repository.AppUserAuthUserRepository;
-import com.prosilion.presto.security.service.*;
+import com.prosilion.presto.security.service.AppUserService;
+import com.prosilion.presto.security.service.AuthUserDetailServiceImpl;
+import com.prosilion.presto.security.service.AuthUserDetailsService;
+import com.prosilion.presto.security.service.AuthUserService;
+import com.prosilion.presto.security.service.AuthUserServiceImpl;
+import com.prosilion.presto.security.service.CustomizableAppUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -26,38 +31,38 @@ import javax.sql.DataSource;
 // TODO: below should not be required
 @EntityScan(basePackages = "com.prosilion.presto.security.entity")
 public class SecurityCoreConfig {
-	private static final Logger LOGGER = LoggerFactory.getLogger(SecurityCoreConfig.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(SecurityCoreConfig.class);
 
-	@Bean
+  @Bean
 //	@ConditionalOnMissingBean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 
-	@Bean
-	public WebSecurityCustomizer webSecurityCustomizer() {
-		LOGGER.info("DB - H2 Console active at /h2-console/");
-		return web -> web.ignoring().requestMatchers(PathRequest.toH2Console());
-	}
+  @Bean
+  public WebSecurityCustomizer webSecurityCustomizer() {
+    LOGGER.info("DB - H2 Console active at /h2-console/");
+    return web -> web.ignoring().requestMatchers(PathRequest.toH2Console());
+  }
 
-	@Bean
-	@ConditionalOnMissingBean
-	public AuthUserDetailsService authUserDetailsService(DataSource dataSource, PasswordEncoder passwordEncoder) {
-		return new AuthUserDetailServiceImpl(dataSource, passwordEncoder);
-	}
+  @Bean
+  @ConditionalOnMissingBean
+  public AuthUserDetailsService authUserDetailsService(DataSource dataSource, PasswordEncoder passwordEncoder) {
+    return new AuthUserDetailServiceImpl(dataSource, passwordEncoder);
+  }
 
-	@Bean
-	@ConditionalOnMissingBean
-	public AuthUserService authUserService(
-		CustomizableAppUserService customizableAppUserService,
-		AuthUserDetailsService authUserDetailService,
-		AppUserService appUserService,
-		AppUserAuthUserRepository appUserAuthUserRepository) {
-		return new AuthUserServiceImpl(customizableAppUserService, authUserDetailService, appUserService, appUserAuthUserRepository);
-	}
+  @Bean
+  @ConditionalOnMissingBean
+  public AuthUserService authUserService(
+      CustomizableAppUserService customizableAppUserService,
+      AuthUserDetailsService authUserDetailService,
+      AppUserService appUserService,
+      AppUserAuthUserRepository appUserAuthUserRepository) {
+    return new AuthUserServiceImpl(customizableAppUserService, authUserDetailService, appUserService, appUserAuthUserRepository);
+  }
 
-	@Bean
-	public AppUserLocalAuthorities appUserLocalAuthorities(AuthUserService authUserService) {
-		return new AppUserLocalAuthorities(authUserService);
-	}
+  @Bean
+  public AppUserLocalAuthorities appUserLocalAuthorities(AuthUserService authUserService) {
+    return new AppUserLocalAuthorities(authUserService);
+  }
 }

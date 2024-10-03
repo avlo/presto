@@ -8,6 +8,7 @@ import com.prosilion.presto.security.service.AuthUserDetailServiceImpl;
 import com.prosilion.presto.security.service.AuthUserDetailsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public class AzureUserDetailServiceImpl implements AuthUserDetailsService {
@@ -30,6 +31,10 @@ public class AzureUserDetailServiceImpl implements AuthUserDetailsService {
   public AuthUserDetails createAuthUser(String username, String password) throws PreExistingUserException {
     authUserDetailsService.createUser(new AzureUserDetailsImpl(new AuthUserDetailsImpl(authUserDetailsService.createAuthUser(username, password, ADOAUTH2_DEFAULT_ROLE))));
     return loadUserByUsername(username);
+  }
+
+  @Override
+  public void updateUser(UserDetails user) {
   }
 
   @Override

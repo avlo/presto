@@ -5,8 +5,7 @@ import com.prosilion.presto.security.service.AuthUserService;
 import com.prosilion.presto.web.controller.AuthController;
 import com.prosilion.presto.web.service.AppUserDtoService;
 import com.prosilion.presto.web.service.AppUserDtoServiceImpl;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.web.servlet.ConditionalOnMissingFilterBean;
@@ -18,10 +17,10 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 
+@Slf4j
 @AutoConfiguration
 @EnableWebSecurity
 public class JpaSecurityConfig {
-  private static final Logger LOGGER = LoggerFactory.getLogger(JpaSecurityConfig.class);
 
   @Bean
   @ConditionalOnMissingBean
@@ -39,7 +38,7 @@ public class JpaSecurityConfig {
   @DependsOn("mvc")
   @ConditionalOnMissingFilterBean
   public SecurityFilterChain filterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc, AuthenticationSuccessHandler authenticationSuccessHandler) throws Exception {
-    LOGGER.info("Loading JPA - Endpoint authorization configuration");
+    log.info("Loading JPA - Endpoint authorization configuration");
     http.authorizeHttpRequests(authorize -> authorize
         .requestMatchers(mvc.pattern("/css/**")).permitAll()
         .requestMatchers(mvc.pattern("/images/**")).permitAll()

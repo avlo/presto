@@ -7,6 +7,7 @@ import com.prosilion.presto.azure.service.AzureUserDetailServiceImpl;
 import com.prosilion.presto.security.AppUserLocalAuthorities;
 import com.prosilion.presto.security.service.AuthUserDetailServiceImpl;
 import com.prosilion.presto.security.service.AuthUserDetailsService;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -28,6 +29,7 @@ import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 
 import javax.sql.DataSource;
 
+@Slf4j
 @AutoConfiguration
 @EnableMethodSecurity
 @ConditionalOnClass(AadWebApplicationHttpSecurityConfigurer.class)
@@ -38,7 +40,6 @@ import javax.sql.DataSource;
 @AutoConfigureBefore({JpaSecurityConfig.class, SecurityCoreConfig.class})
 @EntityScan(basePackages = "com.prosilion.presto.azure.entity")
 public class AzureSecurityConfig {
-	private static final Logger LOGGER = LoggerFactory.getLogger(AzureSecurityConfig.class);
 
 	@Bean
 	public AadWebApplicationHttpSecurityConfigurer aadWebApplicationHttpSecurityConfigurer(HttpSecurity http) {
@@ -54,7 +55,7 @@ public class AzureSecurityConfig {
 		AzureAuthUserServiceImpl azureAuthUserServiceImpl,
 		AadWebApplicationHttpSecurityConfigurer aadWebApplicationHttpSecurityConfigurer
 	) throws Exception {
-		LOGGER.info("Loading ADOauth2 - Endpoint authorization configuration");
+		log.info("Loading ADOauth2 - Endpoint authorization configuration");
 		http.apply(aadWebApplicationHttpSecurityConfigurer)
 			.and()
 			.authorizeHttpRequests(authorize -> authorize

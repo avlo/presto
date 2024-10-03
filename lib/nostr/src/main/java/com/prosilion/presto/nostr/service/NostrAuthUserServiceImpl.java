@@ -24,13 +24,13 @@ import java.util.List;
 public class NostrAuthUserServiceImpl implements NostrAuthUserService {
   private final CustomizableAppUserService customizableAppUserService;
   private final AppUserAuthUserRepository appUserAuthUserRepository;
-  private final NostrUserDetailsService nostrUserDetailService;
+  private final NostrAuthUserDetailsService nostrUserDetailService;
   private final AppUserService appUserService;
 
   @Autowired
   public NostrAuthUserServiceImpl(
       CustomizableAppUserService customizableAppUserService,
-      NostrUserDetailsService nostrUserDetailService,
+      NostrAuthUserDetailsService nostrUserDetailService,
       AppUserService appUserService,
       AppUserAuthUserRepository appUserAuthUserRepository) {
     log.info("NOSTR - Loading NostrAuthUserServiceImpl");

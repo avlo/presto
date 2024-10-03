@@ -16,11 +16,13 @@ import java.util.Collection;
  * Note: Spring Security using JPA maps this class to "USERS" DB table.
  */
 @Scope("session")
-public class NostrUserDetailsImpl implements AuthUserDetails {
+public class NostrAuthUserDetailsImpl implements NostrAuthUserDetails {
   private final AuthUserDetails authUserDetails;
+  private String pubKey;
 
-  public NostrUserDetailsImpl(@NonNull AuthUserDetails authUserDetails) {
-    this.authUserDetails = authUserDetails;
+  public NostrAuthUserDetailsImpl(@NonNull AuthUserDetails nostrAuthUserDetails, @NonNull String pubKey) {
+    this.authUserDetails = nostrAuthUserDetails;
+    this.pubKey = pubKey;
   }
 
   @Override
@@ -41,6 +43,16 @@ public class NostrUserDetailsImpl implements AuthUserDetails {
   @Override
   public String getUsername() {
     return authUserDetails.getUsername();
+  }
+
+  @Override
+  public String getPubKey() {
+    return pubKey;
+  }
+
+  @Override
+  public void setPubKey(String pubKey) {
+    this.pubKey = pubKey;
   }
 
   @Override
