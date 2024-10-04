@@ -30,7 +30,9 @@ public class NostrAuthUserDetailsServiceImpl extends JdbcUserDetailsManager impl
   public NostrAuthUserDetails createAuthUser(String username, String password, String pubKey) throws PreExistingUserException {
     UserDetails authUser = createAuthUser(username, password, pubKey, NOSTR_DEFAULT_ROLE);
     NostrAuthUserDetails nostrAuthUserDetails = createNostrAuthUserDetails(authUser, pubKey);
-    return loadUserByUsernameAndPubKey(username, pubKey);
+    createUser(nostrAuthUserDetails);
+    NostrAuthUserDetails nostrAuthUserDetails1 = loadUserByUsernameAndPubKey(username, pubKey);
+    return nostrAuthUserDetails1;
   }
 
   public UserDetails createAuthUser(String username, String password, String pubKey, String role) throws PreExistingUserException {
