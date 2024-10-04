@@ -58,7 +58,8 @@ public class NostrAuthUserServiceImpl implements NostrAuthUserService {
     }
 
     NostrAuthUserDetails savedAuthUserDetails = nostrUserDetailService.createAuthUser(username, password, pubKey);
-    CustomizableAppUser<AppUser> appUser = appUserService.save(customizableAppUserService.createNewAppUser());
+    CustomizableAppUser<AppUser> newAppUser = customizableAppUserService.createNewAppUser();
+    CustomizableAppUser<AppUser> appUser = appUserService.save(newAppUser);
 
     AppUserAuthUser appUserAuthUser = new AppUserAuthUser(appUser.getId(), savedAuthUserDetails.getUsername());
     AppUserAuthUser appUserAuthUser1 = appUserAuthUserRepository.saveAndFlush(appUserAuthUser);

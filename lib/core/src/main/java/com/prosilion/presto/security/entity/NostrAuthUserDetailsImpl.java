@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 /**
@@ -15,33 +16,34 @@ import java.util.Collection;
  * Note: Spring Security using JPA maps this class to "USERS" DB table.
  */
 @Scope("session")
-public class NostrAuthUserDetailsImpl implements NostrAuthUserDetails {
-  private final UserDetails authUserDetails;
+public class NostrAuthUserDetailsImpl implements NostrAuthUserDetails, Serializable {
+
+  private final UserDetails user;
   private String pubKey;
 
-  public NostrAuthUserDetailsImpl(@NonNull UserDetails authUserDetails, @NonNull String pubKey) {
-    this.authUserDetails = authUserDetails;
+  public NostrAuthUserDetailsImpl(@NonNull UserDetails user, @NonNull String pubKey) {
+    this.user = user;
     this.pubKey = pubKey;
   }
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return authUserDetails.getAuthorities();
+    return user.getAuthorities();
   }
 
-//  @Override
-//  public UserDetails getUser() {
-//    return authUserDetails.getUser();
-//  }
+  @Override
+  public UserDetails getUser() {
+    return user;
+  }
 
   @Override
   public String getPassword() {
-    return authUserDetails.getPassword();
+    return user.getPassword();
   }
 
   @Override
   public String getUsername() {
-    return authUserDetails.getUsername();
+    return user.getUsername();
   }
 
   @Override
@@ -56,21 +58,21 @@ public class NostrAuthUserDetailsImpl implements NostrAuthUserDetails {
 
   @Override
   public boolean isAccountNonExpired() {
-    return authUserDetails.isAccountNonExpired();
+    return user.isAccountNonExpired();
   }
 
   @Override
   public boolean isAccountNonLocked() {
-    return authUserDetails.isAccountNonLocked();
+    return user.isAccountNonLocked();
   }
 
   @Override
   public boolean isCredentialsNonExpired() {
-    return authUserDetails.isCredentialsNonExpired();
+    return user.isCredentialsNonExpired();
   }
 
   @Override
   public boolean isEnabled() {
-    return authUserDetails.isEnabled();
+    return user.isEnabled();
   }
 }

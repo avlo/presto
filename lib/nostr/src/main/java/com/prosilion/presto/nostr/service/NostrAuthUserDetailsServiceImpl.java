@@ -1,8 +1,10 @@
 package com.prosilion.presto.nostr.service;
 
+import com.prosilion.presto.security.PreExistingUserException;
+import com.prosilion.presto.security.entity.AuthUserDetails;
+import com.prosilion.presto.security.entity.AuthUserDetailsImpl;
 import com.prosilion.presto.security.entity.NostrAuthUserDetails;
 import com.prosilion.presto.security.entity.NostrAuthUserDetailsImpl;
-import com.prosilion.presto.security.PreExistingUserException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,10 +31,16 @@ public class NostrAuthUserDetailsServiceImpl extends JdbcUserDetailsManager impl
   @Override
   public NostrAuthUserDetails createAuthUser(String username, String password, String pubKey) throws PreExistingUserException {
     UserDetails authUser = createAuthUser(username, password, pubKey, NOSTR_DEFAULT_ROLE);
-    NostrAuthUserDetails nostrAuthUserDetails = createNostrAuthUserDetails(authUser, pubKey);
-    createUser(nostrAuthUserDetails);
-    NostrAuthUserDetails nostrAuthUserDetails1 = loadUserByUsernameAndPubKey(username, pubKey);
-    return nostrAuthUserDetails1;
+    AuthUserDetailsImpl authUserDetails = new AuthUserDetailsImpl(authUser);
+    NostrAuthUserDetailsImpl user = new NostrAuthUserDetailsImpl(authUserDetails, pubKey);
+    createUser(user);
+    NostrAuthUserDetails nostrAuthUserDetails = loadUserByUsernameAndPubKey(username, pubKey);
+    return nostrAuthUserDetails;
+//    UserDetails authUser = createAuthUser(username, password, pubKey, NOSTR_DEFAULT_ROLE);
+//    NostrAuthUserDetails nostrAuthUserDetails = createNostrAuthUserDetails(authUser, pubKey);
+//    createUser(nostrAuthUserDetails);
+//    NostrAuthUserDetails nostrAuthUserDetails1 = loadUserByUsernameAndPubKey(username, pubKey);
+//    return nostrAuthUserDetails1;
   }
 
   public UserDetails createAuthUser(String username, String password, String pubKey, String role) throws PreExistingUserException {
