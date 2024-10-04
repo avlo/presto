@@ -2,12 +2,13 @@ package com.prosilion.presto.nostr.service;
 
 import com.prosilion.presto.security.PreExistingUserException;
 import com.prosilion.presto.security.entity.AppUserAuthUser;
+import com.prosilion.presto.security.service.AuthUserService;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 import java.util.List;
 
-public interface NostrAuthUserService {
+public interface NostrAuthUserService extends AuthUserService {
 
   boolean userExists(String userName);
 

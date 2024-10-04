@@ -16,22 +16,22 @@ import java.util.List;
 
 @Controller
 @PropertySource("classpath:application.properties")
-public class UsersController {
+public class UsersController<T extends AppUserDtoService<U>, U extends AppUserDtoIF> {
   private static final Logger LOGGER = LoggerFactory.getLogger(UsersController.class);
-  private final AppUserDtoService appUserDtoService;
+  private final T appUserDtoService;
 
   @Value("${environmentlabel}")
   private String environmentLabel;
 
   @Autowired
-  public UsersController(AppUserDtoService appUserDtoService) {
+  public UsersController(T appUserDtoService) {
     this.appUserDtoService = appUserDtoService;
   }
 
   @Secured({"ROLE_ANONYMOUS", "ANONYMOUS", "ROLE_USER", "USER"})
   @GetMapping("/users")
   public String users(Model model) {
-    List<AppUserDtoIF> users = appUserDtoService.getAllAppUsersAsDto();
+    List<U> users = appUserDtoService.getAllAppUsersAsDto();
     LOGGER.info("Fetched users: {}", users);
     model.addAttribute("environmentlabel", environmentLabel);
     model.addAttribute("users", users);

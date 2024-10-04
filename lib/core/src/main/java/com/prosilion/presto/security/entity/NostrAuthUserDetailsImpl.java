@@ -1,6 +1,5 @@
-package com.prosilion.presto.nostr.entity;
+package com.prosilion.presto.security.entity;
 
-import com.prosilion.presto.security.entity.AuthUserDetails;
 import lombok.NonNull;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,11 +16,11 @@ import java.util.Collection;
  */
 @Scope("session")
 public class NostrAuthUserDetailsImpl implements NostrAuthUserDetails {
-  private final AuthUserDetails authUserDetails;
+  private final UserDetails authUserDetails;
   private String pubKey;
 
-  public NostrAuthUserDetailsImpl(@NonNull AuthUserDetails nostrAuthUserDetails, @NonNull String pubKey) {
-    this.authUserDetails = nostrAuthUserDetails;
+  public NostrAuthUserDetailsImpl(@NonNull UserDetails authUserDetails, @NonNull String pubKey) {
+    this.authUserDetails = authUserDetails;
     this.pubKey = pubKey;
   }
 
@@ -30,10 +29,10 @@ public class NostrAuthUserDetailsImpl implements NostrAuthUserDetails {
     return authUserDetails.getAuthorities();
   }
 
-  @Override
-  public UserDetails getUser() {
-    return authUserDetails.getUser();
-  }
+//  @Override
+//  public UserDetails getUser() {
+//    return authUserDetails.getUser();
+//  }
 
   @Override
   public String getPassword() {

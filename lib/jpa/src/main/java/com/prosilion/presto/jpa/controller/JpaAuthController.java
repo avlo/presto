@@ -6,16 +6,16 @@ import com.prosilion.presto.security.service.AuthUserService;
 import com.prosilion.presto.web.controller.AuthController;
 import com.prosilion.presto.web.model.AppUserDto;
 import com.prosilion.presto.web.model.AppUserDtoIF;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.prosilion.presto.web.model.NostrAppUserDtoIF;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+@Slf4j
 public class JpaAuthController implements AuthController {
-  private static final Logger LOGGER = LoggerFactory.getLogger(JpaAuthController.class);
   private final AuthUserService authUserService;
 
   public JpaAuthController(AuthUserService authUserService) {
@@ -24,7 +24,7 @@ public class JpaAuthController implements AuthController {
 
   @GetMapping("/register")
   public String showRegistrationForm(Model model) {
-    AppUserDto user = new AppUserDto();
+    AppUserDtoIF user = new AppUserDto();
     model.addAttribute("user", user);
     return "thymeleaf/register";
   }
@@ -33,20 +33,25 @@ public class JpaAuthController implements AuthController {
   public String registration(@ModelAttribute("user") AppUserDtoIF appUserDto, BindingResult result, Model model) {
 
     if (result.hasErrors()) {
-      LOGGER.info("User [{}] returned with with binding errors.", result.getFieldErrors());
+      log.info("User [{}] returned with with binding errors.", result.getFieldErrors());
       model.addAttribute("user", appUserDto);
       return "redirect:/register";
     }
 
     try {
       AppUserAuthUser appUserAuthUser = authUserService.createUser(appUserDto.getUsername(), appUserDto.getPassword());
-      LOGGER.info("Registered AppUserAuthUser [{}]", appUserAuthUser.getAuthUserName());
+      log.info("Registered AppUserAuthUser [{}]", appUserAuthUser.getAuthUserName());
       model.addAttribute("user", appUserDto);
       return "redirect:/login";
     } catch (PreExistingUserException e) {
-      LOGGER.info("User [{}] already exists.", appUserDto.getUsername());
+      log.info("User [{}] already exists.", appUserDto.getUsername());
       model.addAttribute("user", appUserDto);
       return "redirect:/login";
     }
+  }
+
+  @Override
+  public String registration(NostrAppUserDtoIF nostrAppUserDtoIF, BindingResult result, Model model) {
+    return null;
   }
 }

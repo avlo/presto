@@ -1,6 +1,7 @@
 package com.prosilion.presto.web.controller;
 
 import com.prosilion.presto.web.model.AppUserDtoIF;
+import com.prosilion.presto.web.model.NostrAppUserDtoIF;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,4 +16,7 @@ public interface AuthController {
 
   @PostMapping("/register")
   String registration(AppUserDtoIF appUserDtoIF, BindingResult result, Model model);
+
+  @PostMapping("/register-nostr")
+  String registration(NostrAppUserDtoIF nostrAppUserDtoIF, BindingResult result, Model model);
 }

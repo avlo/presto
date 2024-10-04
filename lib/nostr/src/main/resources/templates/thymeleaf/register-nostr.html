@@ -37,7 +37,7 @@
         </div>
       </div>
       <div class="card-body">
-        <form action="#" method="post" role="form" th:action="@{/register}" th:object="${user}">
+        <form action="#" method="post" role="form" th:action="@{/register-nostr}" th:object="${user}">
 <!--          <form action="#" th:action="@{/contract/create}" th:object="${contract}" method="post">-->
           <div class="form-group mb-3">
             <label class="form-label">User Name</label>
@@ -71,14 +71,14 @@
             <label class="form-label">Nostr PubKey</label>
             <input
                 class="form-control"
-                id="pubKey"
-                name="pubKey"
+                id="pubkey"
+                name="pubkey"
                 placeholder="Enter Nostr Public Key"
-                th:field="*{pubKey}"
+                th:field="*{pubkey}"
                 type="text"
             />
-            <p th:errors = "*{pubKey}" class="text-danger"
-               th:if="${#fields.hasErrors('pubKey')}"></p>
+            <p th:errors = "*{pubkey}" class="text-danger"
+               th:if="${#fields.hasErrors('pubkey')}"></p>
           </div>
 
           <div class="form-group">

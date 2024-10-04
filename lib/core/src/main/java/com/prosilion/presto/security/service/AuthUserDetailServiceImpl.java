@@ -28,11 +28,10 @@ public class AuthUserDetailServiceImpl extends JdbcUserDetailsManager implements
   @Transactional
   @Override
   public AuthUserDetails createAuthUser(String username, String password) throws PreExistingUserException {
-    createUser(
-        new AuthUserDetailsImpl(
-            createAuthUser(
-                username, password, JSP_ROLE)));
-    return loadUserByUsername(username);
+    UserDetails authUser = createAuthUser(username, password, JSP_ROLE);
+    createUser(new AuthUserDetailsImpl(authUser));
+    AuthUserDetails authUserDetails = loadUserByUsername(username);
+    return authUserDetails;
   }
 
   public UserDetails createAuthUser(String username, String password, String role) throws PreExistingUserException {

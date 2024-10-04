@@ -5,8 +5,8 @@ import com.prosilion.presto.nostr.service.NostrAuthUserService;
 import com.prosilion.presto.security.PreExistingUserException;
 import com.prosilion.presto.security.entity.AppUserAuthUser;
 import com.prosilion.presto.web.controller.AuthController;
-import com.prosilion.presto.web.model.AppUserDto;
 import com.prosilion.presto.web.model.AppUserDtoIF;
+import com.prosilion.presto.web.model.NostrAppUserDtoIF;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,17 +22,16 @@ public class NostrAuthController implements AuthController {
     this.nostrAuthUserService = nostrAuthUserService;
   }
 
-  @Override
+  //  @Override
   @GetMapping("/register")
   public String showRegistrationForm(Model model) {
-    NostrAppUserDto user = new NostrAppUserDto(new AppUserDto());
+    NostrAppUserDtoIF user = new NostrAppUserDto();
     model.addAttribute("user", user);
     return "thymeleaf/register-nostr";
   }
 
-  @PostMapping("/register")
-  public String registration(@ModelAttribute("user") AppUserDtoIF nostrAppUserDto, BindingResult result, Model model) {
-//    public String registration(@ModelAttribute("user") NostrAppUserDtoIF nostrAppUserDto, BindingResult result, Model model) {
+  @PostMapping("/register-nostr")
+  public String registration(@ModelAttribute("user") NostrAppUserDtoIF nostrAppUserDto, BindingResult result, Model model) {
 
     if (result.hasErrors()) {
       log.info("User [{}] returned with with binding errors.", result.getFieldErrors());
@@ -44,10 +43,9 @@ public class NostrAuthController implements AuthController {
       AppUserAuthUser appUserAuthUser = nostrAuthUserService.createUser(
           nostrAppUserDto.getUsername(),
           nostrAppUserDto.getPassword(),
-//          nostrAppUserDto.getPubKey()
-          "NEEDS FIX"
+          nostrAppUserDto.getPubkey()
       );
-      log.info("Registered AppUserAuthUser [{}]", appUserAuthUser.getAuthUserName());
+      log.info("Registered NOSTR AppUserAuthUser [{}]", appUserAuthUser.getAuthUserName());
       model.addAttribute("user", nostrAppUserDto);
       return "redirect:/login";
     } catch (PreExistingUserException e) {
@@ -55,5 +53,10 @@ public class NostrAuthController implements AuthController {
       model.addAttribute("user", nostrAppUserDto);
       return "redirect:/login";
     }
+  }
+
+  @Override
+  public String registration(AppUserDtoIF appUserDtoIF, BindingResult result, Model model) {
+    return null;
   }
 }
