@@ -1,5 +1,6 @@
 package com.prosilion.presto;
 
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
@@ -9,7 +10,7 @@ import javax.sql.DataSource;
 /**
  * A bean of this class instantiates in either one of two ways:
  * 1) If container doesn't already have one, H2DatabaseAutoConfiguration.java
- *      will create one.
+ * will create one.
  * 2) Pre-existing by some other mechanism (currently does not occur)
  */
 public class H2Database {
@@ -23,10 +24,11 @@ public class H2Database {
   }
 
   public DataSource getDataSource() {
-    return new EmbeddedDatabaseBuilder()
-               .setType(EmbeddedDatabaseType.H2)
-               .addScript(JdbcDaoImpl.DEFAULT_USER_SCHEMA_DDL_LOCATION)
-               .build();
+    EmbeddedDatabase build = new EmbeddedDatabaseBuilder()
+        .setType(EmbeddedDatabaseType.H2)
+        .addScript(h2DatabaseConfig.getProperty(H2DatabaseConfigParams.USERS_DDL))
+        .build();
+    return build;
   }
 
 //  public DataSource getDataSource() {

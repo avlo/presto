@@ -1,6 +1,6 @@
 package com.prosilion.presto.nostr.service;
 
-import com.prosilion.presto.security.entity.NostrAuthUserDetails;
+import com.prosilion.presto.security.entity.NostrUserDetails;
 import com.prosilion.presto.security.PreExistingUserException;
 import com.prosilion.presto.security.entity.AppUser;
 import com.prosilion.presto.security.entity.AppUserAuthUser;
@@ -18,27 +18,27 @@ import java.util.Collection;
 import java.util.List;
 
 @Slf4j
-public class NostrAuthUserServiceImpl implements NostrAuthUserService {
+public class NostrUserServiceImpl implements NostrUserService {
   private final CustomizableAppUserService customizableAppUserService;
   private final AppUserAuthUserRepository appUserAuthUserRepository;
-  private final NostrAuthUserDetailsService nostrUserDetailService;
+  private final NostrUserDetailsService nostrUserDetailsService;
   private final AppUserService appUserService;
 
-  public NostrAuthUserServiceImpl(
+  public NostrUserServiceImpl(
       CustomizableAppUserService customizableAppUserService,
-      NostrAuthUserDetailsService nostrUserDetailService,
+      NostrUserDetailsService nostrUserDetailsService,
       AppUserService appUserService,
       AppUserAuthUserRepository appUserAuthUserRepository) {
     log.info("NOSTR - Loading NostrAuthUserServiceImpl");
     this.customizableAppUserService = customizableAppUserService;
+    this.nostrUserDetailsService = nostrUserDetailsService;
     this.appUserAuthUserRepository = appUserAuthUserRepository;
-    this.nostrUserDetailService = nostrUserDetailService;
     this.appUserService = appUserService;
   }
 
   @Override
   public boolean userExists(String userName) {
-    return nostrUserDetailService.userExists(userName);
+    return nostrUserDetailsService.userExists(userName);
   }
 
   @Override
@@ -57,7 +57,7 @@ public class NostrAuthUserServiceImpl implements NostrAuthUserService {
       throw new PreExistingUserException(MessageFormat.format("Pre-existing user [{0}]", username));
     }
 
-    NostrAuthUserDetails savedAuthUserDetails = nostrUserDetailService.createAuthUser(username, password, pubKey);
+    NostrUserDetails savedAuthUserDetails = nostrUserDetailsService.createAuthUser(username, password, pubKey);
     CustomizableAppUser<AppUser> newAppUser = customizableAppUserService.createNewAppUser();
     CustomizableAppUser<AppUser> appUser = appUserService.save(newAppUser);
 
@@ -78,6 +78,6 @@ public class NostrAuthUserServiceImpl implements NostrAuthUserService {
 
   @Override
   public Collection<GrantedAuthority> getGrantedAuthorities(@NonNull String username) {
-    return List.copyOf(nostrUserDetailService.loadUserByUsername(username).getAuthorities());
+    return List.copyOf(nostrUserDetailsService.loadUserByUsername(username).getAuthorities());
   }
 }

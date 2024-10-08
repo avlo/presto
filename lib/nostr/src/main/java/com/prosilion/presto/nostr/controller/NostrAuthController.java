@@ -1,7 +1,7 @@
 package com.prosilion.presto.nostr.controller;
 
 import com.prosilion.presto.nostr.dto.model.NostrAppUserDto;
-import com.prosilion.presto.nostr.service.NostrAuthUserService;
+import com.prosilion.presto.nostr.service.NostrUserService;
 import com.prosilion.presto.security.PreExistingUserException;
 import com.prosilion.presto.security.entity.AppUserAuthUser;
 import com.prosilion.presto.web.controller.AuthController;
@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Slf4j
 public class NostrAuthController implements AuthController {
-  private final NostrAuthUserService nostrAuthUserService;
+  private final NostrUserService nostrUserService;
 
-  public NostrAuthController(NostrAuthUserService nostrAuthUserService) {
-    this.nostrAuthUserService = nostrAuthUserService;
+  public NostrAuthController(NostrUserService nostrUserService) {
+    this.nostrUserService = nostrUserService;
   }
 
   //  @Override
@@ -40,7 +40,7 @@ public class NostrAuthController implements AuthController {
     }
 
     try {
-      AppUserAuthUser appUserAuthUser = nostrAuthUserService.createUser(
+      AppUserAuthUser appUserAuthUser = nostrUserService.createUser(
           nostrAppUserDto.getUsername(),
           nostrAppUserDto.getPassword(),
           nostrAppUserDto.getPubkey()

@@ -1,12 +1,13 @@
 package com.prosilion.presto;
 
 import com.prosilion.presto.nostr.controller.NostrAuthController;
+import com.prosilion.presto.nostr.db.NostrJdbcUserDetailsManager;
 import com.prosilion.presto.nostr.service.NostrAppUserDtoService;
 import com.prosilion.presto.nostr.service.NostrAppUserDtoServiceImpl;
-import com.prosilion.presto.nostr.service.NostrAuthUserDetailsService;
-import com.prosilion.presto.nostr.service.NostrAuthUserDetailsServiceImpl;
-import com.prosilion.presto.nostr.service.NostrAuthUserService;
-import com.prosilion.presto.nostr.service.NostrAuthUserServiceImpl;
+import com.prosilion.presto.nostr.service.NostrUserDetailsService;
+import com.prosilion.presto.nostr.service.NostrUserDetailsServiceImpl;
+import com.prosilion.presto.nostr.service.NostrUserService;
+import com.prosilion.presto.nostr.service.NostrUserServiceImpl;
 import com.prosilion.presto.security.repository.AppUserAuthUserRepository;
 import com.prosilion.presto.security.service.AppUserService;
 import com.prosilion.presto.security.service.CustomizableAppUserService;
@@ -18,6 +19,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -27,13 +29,13 @@ import javax.sql.DataSource;
 
 @Slf4j
 @AutoConfiguration
-//@EnableWebSecurity
+@EnableWebSecurity
 @AutoConfigureBefore({JpaSecurityConfig.class, SecurityCoreConfig.class})
 public class NostrSecurityConfig {
 
   @Bean
-  AuthController authController(NostrAuthUserService nostrAuthUserService) {
-    return new NostrAuthController(nostrAuthUserService);
+  AuthController authController(NostrUserService nostrUserService) {
+    return new NostrAuthController(nostrUserService);
   }
 
   @Bean
@@ -62,23 +64,30 @@ public class NostrSecurityConfig {
 
   @Bean
   @Primary
-  public NostrAuthUserDetailsService authUserDetailsService(DataSource dataSource, PasswordEncoder passwordEncoder) {
-    return new NostrAuthUserDetailsServiceImpl(dataSource, passwordEncoder);
+  NostrJdbcUserDetailsManager userDetailsManager(DataSource dataSource) {
+    return new NostrJdbcUserDetailsManager(dataSource);
   }
 
   @Bean
   @Primary
-  public NostrAuthUserService authUserService(
+  public NostrUserDetailsService nostrUserDetailsService(DataSource dataSource, PasswordEncoder passwordEncoder) {
+    NostrUserDetailsServiceImpl nostrAuthUserDetailsService = new NostrUserDetailsServiceImpl(dataSource, passwordEncoder);
+    return nostrAuthUserDetailsService;
+  }
+
+  @Bean
+  @Primary
+  public NostrUserService authUserService(
       CustomizableAppUserService customizableAppUserService,
-      NostrAuthUserDetailsService nostrAuthUserDetailsService,
+      NostrUserDetailsService nostrUserDetailsService,
       AppUserService appUserService,
       AppUserAuthUserRepository appUserAuthUserRepository) {
-    return new NostrAuthUserServiceImpl(customizableAppUserService, nostrAuthUserDetailsService, appUserService, appUserAuthUserRepository);
+    return new NostrUserServiceImpl(customizableAppUserService, nostrUserDetailsService, appUserService, appUserAuthUserRepository);
   }
 
   @Bean
   @Primary
-  public NostrAppUserDtoService appUserDtoService(NostrAuthUserService authUserService) {
+  public NostrAppUserDtoService appUserDtoService(NostrUserService authUserService) {
     return new NostrAppUserDtoServiceImpl(authUserService);
   }
 }

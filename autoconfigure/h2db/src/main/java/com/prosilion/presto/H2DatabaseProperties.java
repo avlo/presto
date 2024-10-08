@@ -20,4 +20,5 @@ public class H2DatabaseProperties {
   private String driverClassName;
   private String username;
   private String password;
+  private String userSchemaDdlLocation;
 }

@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
+import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 
 import javax.sql.DataSource;
 
@@ -28,6 +29,7 @@ public class H2DatabaseAutoConfiguration {
   private static final String DEFAULT_DRIVER_CLASSNAME = "org.h2.Driver";
   private static final String DEFAULT_USERNAME = "serveruser";
   private static final String DEFAULT_PASSWORD = "serveruserpass";
+  private static final String DEFAULT_DDL = JdbcDaoImpl.DEFAULT_USER_SCHEMA_DDL_LOCATION;
 
   private final H2DatabaseProperties dbProps;
 
@@ -55,6 +57,7 @@ public class H2DatabaseAutoConfiguration {
     h2DatabaseConfig.put(H2DatabaseConfigParams.DRIVER_CLASSNAME, go(dbProps.getDriverClassName(), DEFAULT_DRIVER_CLASSNAME));
     h2DatabaseConfig.put(H2DatabaseConfigParams.USERNAME, go(dbProps.getUsername(), DEFAULT_USERNAME));
     h2DatabaseConfig.put(H2DatabaseConfigParams.PASSWORD, go(dbProps.getPassword(), DEFAULT_PASSWORD));
+    h2DatabaseConfig.put(H2DatabaseConfigParams.USERS_DDL, go(dbProps.getUserSchemaDdlLocation(), DEFAULT_DDL));
     return h2DatabaseConfig;
   }
 

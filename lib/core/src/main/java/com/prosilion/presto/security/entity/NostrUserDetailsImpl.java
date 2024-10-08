@@ -11,17 +11,16 @@ import java.util.Collection;
 /**
  * Authentication & authorization user, directly bound to Spring Security.
  * If you'd like a customizable user, use:
- * @see com.prosilion.presto.security.core.entity.AppUser
  *
  * Note: Spring Security using JPA maps this class to "USERS" DB table.
  */
 @Scope("session")
-public class NostrAuthUserDetailsImpl implements NostrAuthUserDetails, Serializable {
+public class NostrUserDetailsImpl implements NostrUserDetails, Serializable {
 
   private final UserDetails user;
   private String pubKey;
 
-  public NostrAuthUserDetailsImpl(@NonNull UserDetails user, @NonNull String pubKey) {
+  public NostrUserDetailsImpl(@NonNull UserDetails user, @NonNull String pubKey) {
     this.user = user;
     this.pubKey = pubKey;
   }
@@ -31,10 +30,10 @@ public class NostrAuthUserDetailsImpl implements NostrAuthUserDetails, Serializa
     return user.getAuthorities();
   }
 
-  @Override
-  public UserDetails getUser() {
-    return user;
-  }
+//  @Override
+//  public UserDetails getUser() {
+//    return user;
+//  }
 
   @Override
   public String getPassword() {
@@ -47,12 +46,12 @@ public class NostrAuthUserDetailsImpl implements NostrAuthUserDetails, Serializa
   }
 
   @Override
-  public String getPubKey() {
+  public String getPubkey() {
     return pubKey;
   }
 
   @Override
-  public void setPubKey(String pubKey) {
+  public void setPubkey(String pubKey) {
     this.pubKey = pubKey;
   }
 

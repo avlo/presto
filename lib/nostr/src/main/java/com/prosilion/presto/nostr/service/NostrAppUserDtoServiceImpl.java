@@ -8,15 +8,15 @@ import lombok.NonNull;
 import java.util.List;
 
 public class NostrAppUserDtoServiceImpl<T extends NostrAppUserDtoIF> implements NostrAppUserDtoService<T> {
-  private final NostrAuthUserService nostrAuthUserService;
+  private final NostrUserService nostrUserService;
 
-  public NostrAppUserDtoServiceImpl(@NonNull NostrAuthUserService nostrAuthUserService) {
-    this.nostrAuthUserService = nostrAuthUserService;
+  public NostrAppUserDtoServiceImpl(@NonNull NostrUserService nostrUserService) {
+    this.nostrUserService = nostrUserService;
   }
 
   @Override
   public List<T> getAllAppUsersAsDto() {
-    return convertAppUserToDto(nostrAuthUserService.getAllAppUsersMappedAuthUsers());
+    return convertAppUserToDto(nostrUserService.getAllAppUsersMappedAuthUsers());
   }
 
   private List<T> convertAppUserToDto(List<AppUserAuthUser> users) {

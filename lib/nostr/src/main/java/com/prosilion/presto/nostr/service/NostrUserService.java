@@ -8,7 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import java.util.Collection;
 import java.util.List;
 
-public interface NostrAuthUserService extends AuthUserService {
+public interface NostrUserService extends AuthUserService {
 
   boolean userExists(String userName);
 
