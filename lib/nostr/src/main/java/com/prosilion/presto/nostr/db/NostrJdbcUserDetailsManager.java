@@ -20,10 +20,8 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.context.SecurityContextHolderStrategy;
 import org.springframework.security.core.userdetails.UserCache;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.cache.NullUserCache;
 import org.springframework.security.provisioning.GroupManager;
-import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.util.Assert;
 
 import javax.sql.DataSource;
@@ -33,7 +31,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-public class NostrJdbcUserDetailsManager extends NostrJdbcDaoImpl implements UserDetailsManager, GroupManager {
+public class NostrJdbcUserDetailsManager extends NostrJdbcDaoImpl implements NostrUserDetailsManager, GroupManager {
   public static final String DEF_CREATE_USER_SQL = "insert into users (username, password, pubkey, enabled) values (?,?,?,?)";
   public static final String DEF_DELETE_USER_SQL = "delete from users where username = ?";
   public static final String DEF_UPDATE_USER_SQL = "update users set password = ?, pubkey = ?, enabled = ? where username = ?";
@@ -56,7 +54,7 @@ public class NostrJdbcUserDetailsManager extends NostrJdbcDaoImpl implements Use
   public static final String DEF_DELETE_GROUP_AUTHORITY_SQL = "delete from group_authorities where group_id = ? and authority = ?";
   protected final Log logger = LogFactory.getLog(this.getClass());
   private SecurityContextHolderStrategy securityContextHolderStrategy = SecurityContextHolder.getContextHolderStrategy();
-  private String createUserSql = "insert into users (username, password, pubkey, enabled) values (?,?,?)";
+  private String createUserSql = "insert into users (username, password, pubkey, enabled) values (?,?,?,?)";
   private String deleteUserSql = "delete from users where username = ?";
   private String updateUserSql = "update users set password = ?, pubkey = ?, enabled = ? where username = ?";
   private String createAuthoritySql = "insert into authorities (username, authority) values (?,?)";
@@ -115,8 +113,7 @@ public class NostrJdbcUserDetailsManager extends NostrJdbcDaoImpl implements Use
     return new NostrUser(userName, password, pubkey, enabled, !accExpired, !credsExpired, !accLocked, AuthorityUtils.NO_AUTHORITIES);
   }
 
-  public void createUser(final UserDetails user) {
-    NostrUserDetails nostrUserDetails = (NostrUserDetails) user;
+  public void createUser(final NostrUserDetails nostrUserDetails) {
     this.validateUserDetails(nostrUserDetails);
     this.getJdbcTemplate().update(this.createUserSql, (ps) -> {
       ps.setString(1, nostrUserDetails.getUsername());
@@ -137,30 +134,29 @@ public class NostrJdbcUserDetailsManager extends NostrJdbcDaoImpl implements Use
 
   }
 
-  public void updateUser(final UserDetails user) {
-    NostrUserDetails userDetails = (NostrUserDetails) user;
-    this.validateUserDetails(userDetails);
+  public void updateUser(final NostrUserDetails nostrUserDetails) {
+    this.validateUserDetails(nostrUserDetails);
     this.getJdbcTemplate().update(this.updateUserSql, (ps) -> {
-      ps.setString(1, userDetails.getPassword());
-      ps.setString(2, userDetails.getPubkey());
-      ps.setBoolean(3, userDetails.isEnabled());
+      ps.setString(1, nostrUserDetails.getPassword());
+      ps.setString(2, nostrUserDetails.getPubkey());
+      ps.setBoolean(3, nostrUserDetails.isEnabled());
       int paramCount = ps.getParameterMetaData().getParameterCount();
       if (paramCount == 4) {
-        ps.setString(4, userDetails.getUsername());
+        ps.setString(4, nostrUserDetails.getUsername());
       } else {
-        ps.setBoolean(4, !userDetails.isAccountNonLocked());
-        ps.setBoolean(5, !userDetails.isAccountNonExpired());
-        ps.setBoolean(6, !userDetails.isCredentialsNonExpired());
-        ps.setString(7, userDetails.getUsername());
+        ps.setBoolean(4, !nostrUserDetails.isAccountNonLocked());
+        ps.setBoolean(5, !nostrUserDetails.isAccountNonExpired());
+        ps.setBoolean(6, !nostrUserDetails.isCredentialsNonExpired());
+        ps.setString(7, nostrUserDetails.getUsername());
       }
 
     });
     if (this.getEnableAuthorities()) {
-      this.deleteUserAuthorities(userDetails.getUsername());
-      this.insertUserAuthorities(userDetails);
+      this.deleteUserAuthorities(nostrUserDetails.getUsername());
+      this.insertUserAuthorities(nostrUserDetails);
     }
 
-    this.userCache.removeUserFromCache(userDetails.getUsername());
+    this.userCache.removeUserFromCache(nostrUserDetails.getUsername());
   }
 
   private void insertUserAuthorities(NostrUserDetails user) {
