@@ -45,6 +45,12 @@ public class SecurityCoreConfig {
     return web -> web.ignoring().requestMatchers(PathRequest.toH2Console());
   }
 
+  @Bean(name = "userDetailsService")
+  @ConditionalOnMissingBean(name = "userDetailsService")
+  public AuthUserDetailsService userDetailsService(DataSource dataSource, PasswordEncoder passwordEncoder) {
+    return new AuthUserDetailServiceImpl(dataSource, passwordEncoder);
+  }
+
   @Bean
   @ConditionalOnMissingBean
   public AuthUserService authUserService(
