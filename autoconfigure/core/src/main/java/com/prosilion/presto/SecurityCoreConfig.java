@@ -3,6 +3,7 @@ package com.prosilion.presto;
 import com.prosilion.presto.security.AppUserLocalAuthorities;
 import com.prosilion.presto.security.repository.AppUserAuthUserRepository;
 import com.prosilion.presto.security.service.AppUserService;
+import com.prosilion.presto.security.service.AuthUserDetailServiceImpl;
 import com.prosilion.presto.security.service.AuthUserDetailsService;
 import com.prosilion.presto.security.service.AuthUserService;
 import com.prosilion.presto.security.service.AuthUserServiceImpl;
@@ -20,6 +21,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import javax.sql.DataSource;
 
 @AutoConfiguration
 @EnableWebSecurity
@@ -44,7 +47,7 @@ public class SecurityCoreConfig {
 
 //  @Bean
 //  @ConditionalOnMissingBean
-//  public AuthUserDetailsService authUserDetailsService(DataSource dataSource, PasswordEncoder passwordEncoder) {
+//  public AuthUserDetailsService userDetailsService(DataSource dataSource, PasswordEncoder passwordEncoder) {
 //    return new AuthUserDetailServiceImpl(dataSource, passwordEncoder);
 //  }
 

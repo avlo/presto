@@ -27,7 +27,7 @@ public class NostrUserDetailsServiceImpl extends NostrJdbcUserDetailsManager imp
   @Transactional
   @Override
   public NostrUserDetails createAuthUser(String username, String password, String pubKey) throws PreExistingUserException {
-    NostrUserDetails authUser = buildUserDetails(username, password, pubKey, NOSTR_DEFAULT_ROLE);
+    NostrUserDetails authUser = createAuthUser(username, password, pubKey, NOSTR_DEFAULT_ROLE);
     createUser(authUser);
     NostrUserDetails nostrUserDetails = loadUserByUsernameAndPubKey(username, pubKey);
     return nostrUserDetails;
@@ -40,7 +40,8 @@ public class NostrUserDetailsServiceImpl extends NostrJdbcUserDetailsManager imp
     }
 
     log.info("NOSTR - Creating new local-db user [{}]", username);
-    return buildUserDetails(username, password, pubKey, role);
+    NostrUserDetails nostrUserDetails = buildUserDetails(username, password, pubKey, role);
+    return nostrUserDetails;
   }
 
   public NostrUserDetails buildUserDetails(String username, String password, String pubKey, String role) {

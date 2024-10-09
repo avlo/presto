@@ -1,7 +1,6 @@
 package com.prosilion.presto.nostr.db;
 
 import com.prosilion.presto.security.entity.NostrUserDetails;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface NostrUserDetailsManager extends UserDetailsService {

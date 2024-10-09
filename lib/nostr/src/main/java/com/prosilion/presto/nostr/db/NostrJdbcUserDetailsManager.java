@@ -93,7 +93,8 @@ public class NostrJdbcUserDetailsManager extends NostrJdbcDaoImpl implements Nos
   }
 
   protected List<NostrUserDetails> loadUsersByUsername(String username) {
-    return this.getJdbcTemplate().query(this.getUsersByUsernameQuery(), this::mapToUser, new Object[]{username});
+    List<NostrUserDetails> query = this.getJdbcTemplate().query(this.getUsersByUsernameQuery(), this::mapToUser, new Object[]{username});
+    return query;
   }
 
   private NostrUserDetails mapToUser(ResultSet rs, int rowNum) throws SQLException {
@@ -110,7 +111,8 @@ public class NostrJdbcUserDetailsManager extends NostrJdbcDaoImpl implements Nos
       credsExpired = rs.getBoolean(7);
     }
 
-    return new NostrUser(userName, password, pubkey, enabled, !accExpired, !credsExpired, !accLocked, AuthorityUtils.NO_AUTHORITIES);
+    NostrUser nostrUser = new NostrUser(userName, password, pubkey, enabled, !accExpired, !credsExpired, !accLocked, AuthorityUtils.NO_AUTHORITIES);
+    return nostrUser;
   }
 
   public void createUser(final NostrUserDetails nostrUserDetails) {

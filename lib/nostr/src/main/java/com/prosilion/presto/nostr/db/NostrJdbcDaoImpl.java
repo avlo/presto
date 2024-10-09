@@ -89,7 +89,8 @@ public class NostrJdbcDaoImpl extends JdbcDaoSupport implements UserDetailsServi
       boolean enabled = rs.getBoolean(4);
       return new NostrUser(username1, password, pubkey, enabled, true, true, true, AuthorityUtils.NO_AUTHORITIES);
     };
-    return this.getJdbcTemplate().query(this.usersByUsernameQuery, mapper, new Object[]{username});
+    List<NostrUserDetails> query = this.getJdbcTemplate().query(this.usersByUsernameQuery, mapper, new Object[]{username});
+    return query;
   }
 
   protected List<GrantedAuthority> loadUserAuthorities(String username) {

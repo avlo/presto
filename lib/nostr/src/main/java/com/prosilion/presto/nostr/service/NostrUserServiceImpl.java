@@ -43,6 +43,7 @@ public class NostrUserServiceImpl implements NostrUserService {
 
   @Override
   public AppUserAuthUser createUser(String username, String password) throws PreExistingUserException {
+    // interface method impl from AuthUserService, not used by this class.  uses createUser(...) below instead
     return null;
   }
 

@@ -10,13 +10,13 @@ import java.util.List;
 
 public interface NostrUserService extends AuthUserService {
 
-  boolean userExists(String userName);
+//  boolean userExists(String userName);
 
-  AppUserAuthUser getAppuserAuthuser(String username);
+//  AppUserAuthUser getAppuserAuthuser(String username);
 
   AppUserAuthUser createUser(String username, String password, String pubKey) throws PreExistingUserException;
 
-  List<AppUserAuthUser> getAllAppUsersMappedAuthUsers();
-
-  Collection<GrantedAuthority> getGrantedAuthorities(String username);
+//  List<AppUserAuthUser> getAllAppUsersMappedAuthUsers();
+//
+//  Collection<GrantedAuthority> getGrantedAuthorities(String username);
 }

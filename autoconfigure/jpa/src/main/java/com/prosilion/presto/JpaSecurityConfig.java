@@ -3,6 +3,8 @@ package com.prosilion.presto;
 import com.prosilion.presto.jpa.controller.JpaAuthController;
 import com.prosilion.presto.security.service.AuthUserService;
 import com.prosilion.presto.web.controller.AuthController;
+import com.prosilion.presto.web.model.AppUserDtoIF;
+import com.prosilion.presto.web.model.NostrAppUserDtoIF;
 import com.prosilion.presto.web.service.AppUserDtoService;
 import com.prosilion.presto.web.service.AppUserDtoServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -59,7 +61,7 @@ public class JpaSecurityConfig {
 
   @Bean
   @ConditionalOnMissingBean
-  public AppUserDtoService appUserDtoService(AuthUserService authUserService) {
-    return new AppUserDtoServiceImpl(authUserService);
+  public AppUserDtoService<AppUserDtoIF> appUserDtoService(AuthUserService authUserService) {
+    return new AppUserDtoServiceImpl<>(authUserService);
   }
 }
