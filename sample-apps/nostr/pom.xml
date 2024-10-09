@@ -17,6 +17,7 @@
 
   <properties>
     <starter.version>${project.parent.version}</starter.version>
+    <mysql-connector-j.version>8.4.0</mysql-connector-j.version>
   </properties>
 
   <dependencies>
@@ -77,6 +78,11 @@
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
     </dependency>
+<!--    <dependency>-->
+<!--      <groupId>com.mysql</groupId>-->
+<!--      <artifactId>mysql-connector-j</artifactId>-->
+<!--      <version>${mysql-connector-j.version}</version>-->
+<!--    </dependency>-->
     <dependency>
       <groupId>org.yaml</groupId>
       <artifactId>snakeyaml</artifactId>

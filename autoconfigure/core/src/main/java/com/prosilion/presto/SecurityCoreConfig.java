@@ -45,11 +45,11 @@ public class SecurityCoreConfig {
     return web -> web.ignoring().requestMatchers(PathRequest.toH2Console());
   }
 
-//  @Bean
-//  @ConditionalOnMissingBean
-//  public AuthUserDetailsService userDetailsService(DataSource dataSource, PasswordEncoder passwordEncoder) {
-//    return new AuthUserDetailServiceImpl(dataSource, passwordEncoder);
-//  }
+  @Bean
+  @ConditionalOnMissingBean
+  public AuthUserDetailsService authUserDetailsService(DataSource dataSource, PasswordEncoder passwordEncoder) {
+    return new AuthUserDetailServiceImpl(dataSource, passwordEncoder);
+  }
 
   @Bean
   @ConditionalOnMissingBean

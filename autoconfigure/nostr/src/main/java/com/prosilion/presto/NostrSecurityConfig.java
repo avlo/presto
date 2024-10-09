@@ -28,7 +28,6 @@ import javax.sql.DataSource;
 
 @Slf4j
 @AutoConfiguration
-//@EnableWebSecurity
 @AutoConfigureBefore({JpaSecurityConfig.class, SecurityCoreConfig.class})
 public class NostrSecurityConfig {
 
@@ -69,7 +68,7 @@ public class NostrSecurityConfig {
 
   @Bean
   @Primary
-  public NostrUserDetailsService userDetailsService(DataSource dataSource, PasswordEncoder passwordEncoder) {
+  public NostrUserDetailsService nostrUserDetailsService(DataSource dataSource, PasswordEncoder passwordEncoder) {
     NostrUserDetailsServiceImpl nostrAuthUserDetailsService = new NostrUserDetailsServiceImpl(dataSource, passwordEncoder);
     return nostrAuthUserDetailsService;
   }
