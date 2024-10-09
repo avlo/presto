@@ -1,10 +1,11 @@
 package com.prosilion.presto;
 
 import com.prosilion.presto.jpa.controller.JpaAuthController;
+import com.prosilion.presto.security.service.AuthUserDetailServiceImpl;
+import com.prosilion.presto.security.service.AuthUserDetailsService;
 import com.prosilion.presto.security.service.AuthUserService;
 import com.prosilion.presto.web.controller.AuthController;
 import com.prosilion.presto.web.model.AppUserDtoIF;
-import com.prosilion.presto.web.model.NostrAppUserDtoIF;
 import com.prosilion.presto.web.service.AppUserDtoService;
 import com.prosilion.presto.web.service.AppUserDtoServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -15,9 +16,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
+
+import javax.sql.DataSource;
 
 @Slf4j
 @AutoConfiguration
@@ -57,6 +61,13 @@ public class JpaSecurityConfig {
         .logoutRequestMatcher(mvc.pattern("/logout")).permitAll()
     );
     return http.build();
+  }
+
+
+  @Bean(name = "userDetailsService")
+  @ConditionalOnMissingBean(name = "userDetailsService")
+  public AuthUserDetailsService userDetailsService(DataSource dataSource, PasswordEncoder passwordEncoder) {
+    return new AuthUserDetailServiceImpl(dataSource, passwordEncoder);
   }
 
   @Bean

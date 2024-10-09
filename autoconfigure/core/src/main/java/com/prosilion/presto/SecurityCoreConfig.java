@@ -47,12 +47,6 @@ public class SecurityCoreConfig {
 
   @Bean
   @ConditionalOnMissingBean
-  public AuthUserDetailsService authUserDetailsService(DataSource dataSource, PasswordEncoder passwordEncoder) {
-    return new AuthUserDetailServiceImpl(dataSource, passwordEncoder);
-  }
-
-  @Bean
-  @ConditionalOnMissingBean
   public AuthUserService authUserService(
       CustomizableAppUserService customizableAppUserService,
       AuthUserDetailsService authUserDetailService,

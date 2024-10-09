@@ -66,9 +66,9 @@ public class NostrSecurityConfig {
 //    return new NostrJdbcUserDetailsManager(dataSource);
 //  }
 
-  @Bean
+  @Bean(name = "userDetailsService")
   @Primary
-  public NostrUserDetailsService nostrUserDetailsService(DataSource dataSource, PasswordEncoder passwordEncoder) {
+  public NostrUserDetailsService userDetailsService(DataSource dataSource, PasswordEncoder passwordEncoder) {
     NostrUserDetailsServiceImpl nostrAuthUserDetailsService = new NostrUserDetailsServiceImpl(dataSource, passwordEncoder);
     return nostrAuthUserDetailsService;
   }
