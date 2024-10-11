@@ -31,7 +31,8 @@ import javax.sql.DataSource;
 @AutoConfigureBefore({JpaSecurityConfig.class, SecurityCoreConfig.class})
 public class NostrSecurityConfig {
 
-  @Bean
+  @Bean(name = "authController")
+  @Primary
   AuthController authController(NostrUserService nostrUserService) {
     return new NostrAuthController(nostrUserService);
   }

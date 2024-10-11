@@ -7,5 +7,5 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public interface NostrUserDetailsService extends UserDetailsService {
   boolean userExists(String userName);
   NostrUserDetails createAuthUser(String username, String password, String pubKey) throws PreExistingUserException;
-  NostrUserDetails loadUserByUsernameAndPubKey(String username, String pubKey);
+  NostrUserDetails loadUserByPubKey(String pubKey);
 }

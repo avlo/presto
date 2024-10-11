@@ -4,7 +4,6 @@ import com.prosilion.presto.jpa.controller.JpaAuthController;
 import com.prosilion.presto.security.service.AuthUserService;
 import com.prosilion.presto.web.controller.AuthController;
 import com.prosilion.presto.web.model.AppUserDtoIF;
-import com.prosilion.presto.web.model.NostrAppUserDtoIF;
 import com.prosilion.presto.web.service.AppUserDtoService;
 import com.prosilion.presto.web.service.AppUserDtoServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -24,8 +23,8 @@ import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 @EnableWebSecurity
 public class JpaSecurityConfig {
 
-  @Bean
-  @ConditionalOnMissingBean
+  @Bean(name = "authController")
+  @ConditionalOnMissingBean(name = "authController")
   AuthController authController(AuthUserService authUserService) {
     return new JpaAuthController(authUserService);
   }

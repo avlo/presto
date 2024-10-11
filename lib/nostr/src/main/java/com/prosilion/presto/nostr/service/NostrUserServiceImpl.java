@@ -1,10 +1,10 @@
 package com.prosilion.presto.nostr.service;
 
-import com.prosilion.presto.security.entity.NostrUserDetails;
 import com.prosilion.presto.security.PreExistingUserException;
 import com.prosilion.presto.security.entity.AppUser;
 import com.prosilion.presto.security.entity.AppUserAuthUser;
 import com.prosilion.presto.security.entity.CustomizableAppUser;
+import com.prosilion.presto.security.entity.NostrUserDetails;
 import com.prosilion.presto.security.repository.AppUserAuthUserRepository;
 import com.prosilion.presto.security.service.AppUserService;
 import com.prosilion.presto.security.service.CustomizableAppUserService;
@@ -65,6 +65,11 @@ public class NostrUserServiceImpl implements NostrUserService {
     AppUserAuthUser appUserAuthUser = new AppUserAuthUser(appUser.getId(), savedAuthUserDetails.getUsername());
     AppUserAuthUser appUserAuthUser1 = appUserAuthUserRepository.saveAndFlush(appUserAuthUser);
     return appUserAuthUser1;
+  }
+  @Override
+  public AppUserAuthUser findUserByPubkey(String pubkey) {
+    NostrUserDetails nostrUserDetails = nostrUserDetailsService.loadUserByPubKey(pubkey);
+    return getAppuserAuthuser(nostrUserDetails.getUsername());
   }
 
   @Override

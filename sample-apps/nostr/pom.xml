@@ -41,26 +41,26 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
     </dependency>
-    <dependency>
-      <groupId>com.prosilion.presto.starter</groupId>
-      <artifactId>h2db</artifactId>
-      <version>${starter.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.prosilion.presto.starter</groupId>
-      <artifactId>core</artifactId>
-      <version>${starter.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.prosilion.presto.starter</groupId>
-      <artifactId>web</artifactId>
-      <version>${starter.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.prosilion.presto.starter</groupId>
-      <artifactId>jpa</artifactId>
-      <version>${starter.version}</version>
-    </dependency>
+    <!--    <dependency>-->
+    <!--      <groupId>com.prosilion.presto.starter</groupId>-->
+    <!--      <artifactId>h2db</artifactId>-->
+    <!--      <version>${starter.version}</version>-->
+    <!--    </dependency>-->
+    <!--    <dependency>-->
+    <!--      <groupId>com.prosilion.presto.starter</groupId>-->
+    <!--      <artifactId>core</artifactId>-->
+    <!--      <version>${starter.version}</version>-->
+    <!--    </dependency>-->
+    <!--    <dependency>-->
+    <!--      <groupId>com.prosilion.presto.starter</groupId>-->
+    <!--      <artifactId>web</artifactId>-->
+    <!--      <version>${starter.version}</version>-->
+    <!--    </dependency>-->
+    <!--    <dependency>-->
+    <!--      <groupId>com.prosilion.presto.starter</groupId>-->
+    <!--      <artifactId>jpa</artifactId>-->
+    <!--      <version>${starter.version}</version>-->
+    <!--    </dependency>-->
     <dependency>
       <groupId>com.prosilion.presto.starter</groupId>
       <artifactId>nostr</artifactId>
@@ -78,11 +78,11 @@
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
     </dependency>
-<!--    <dependency>-->
-<!--      <groupId>com.mysql</groupId>-->
-<!--      <artifactId>mysql-connector-j</artifactId>-->
-<!--      <version>${mysql-connector-j.version}</version>-->
-<!--    </dependency>-->
+    <!--    <dependency>-->
+    <!--      <groupId>com.mysql</groupId>-->
+    <!--      <artifactId>mysql-connector-j</artifactId>-->
+    <!--      <version>${mysql-connector-j.version}</version>-->
+    <!--    </dependency>-->
     <dependency>
       <groupId>org.yaml</groupId>
       <artifactId>snakeyaml</artifactId>

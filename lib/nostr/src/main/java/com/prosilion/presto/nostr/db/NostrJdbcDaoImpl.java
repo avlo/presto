@@ -30,6 +30,7 @@ public class NostrJdbcDaoImpl extends JdbcDaoSupport implements UserDetailsServi
   private String authoritiesByUsernameQuery = "select username,authority from authorities where username = ?";
   private String groupAuthoritiesByUsernameQuery = "select g.id, g.group_name, ga.authority from groups g, group_members gm, group_authorities ga where gm.username = ? and g.id = ga.group_id and g.id = gm.group_id";
   private String usersByUsernameQuery = "select username,password,pubkey,enabled from users where username = ?";
+  private String usersByPubkeyQuery = "select username,password,pubkey,enabled from users where pubkey = ?";
   private String rolePrefix = "";
   private boolean usernameBasedPrimaryKey = true;
   private boolean enableAuthorities = true;
@@ -47,6 +48,10 @@ public class NostrJdbcDaoImpl extends JdbcDaoSupport implements UserDetailsServi
 
   public String getUsersByUsernameQuery() {
     return this.usersByUsernameQuery;
+  }
+
+  public String getUsersByPubkeyQuery() {
+    return this.usersByPubkeyQuery;
   }
 
   protected void initDao() throws ApplicationContextException {
@@ -81,6 +86,33 @@ public class NostrJdbcDaoImpl extends JdbcDaoSupport implements UserDetailsServi
     }
   }
 
+  public NostrUserDetails loadUserByPubKey(String pubKey) throws UsernameNotFoundException {
+    List<NostrUserDetails> users = this.loadUsersByPubkey(pubKey);
+    if (users.size() == 0) {
+      this.logger.debug("Query returned no results for pubkey '" + pubKey + "'");
+      throw new UsernameNotFoundException(this.messages.getMessage("NostrJdbcDaoImpl.notFound", new Object[]{pubKey}, "PubKey {0} not found"));
+    } else {
+      NostrUserDetails user = (NostrUserDetails) users.get(0);
+      Set<GrantedAuthority> dbAuthsSet = new HashSet();
+      if (this.enableAuthorities) {
+        dbAuthsSet.addAll(this.loadUserAuthorities(user.getUsername()));
+      }
+
+      if (this.enableGroups) {
+        dbAuthsSet.addAll(this.loadGroupAuthorities(user.getUsername()));
+      }
+
+      List<GrantedAuthority> dbAuths = new ArrayList(dbAuthsSet);
+      this.addCustomAuthorities(user.getUsername(), dbAuths);
+      if (dbAuths.size() == 0) {
+        this.logger.debug("PubKey '" + pubKey + "' has no authorities and will be treated as 'not found'");
+        throw new UsernameNotFoundException(this.messages.getMessage("JdbcDaoImpl.noAuthority", new Object[]{pubKey}, "PubKey {0} has no GrantedAuthority"));
+      } else {
+        return this.createUserDetails(pubKey, user, dbAuths);
+      }
+    }
+  }
+
   protected List<NostrUserDetails> loadUsersByUsername(String username) {
     RowMapper<NostrUserDetails> mapper = (rs, rowNum) -> {
       String username1 = rs.getString(1);
@@ -90,6 +122,18 @@ public class NostrJdbcDaoImpl extends JdbcDaoSupport implements UserDetailsServi
       return new NostrUser(username1, password, pubkey, enabled, true, true, true, AuthorityUtils.NO_AUTHORITIES);
     };
     List<NostrUserDetails> query = this.getJdbcTemplate().query(this.usersByUsernameQuery, mapper, new Object[]{username});
+    return query;
+  }
+
+  protected List<NostrUserDetails> loadUsersByPubkey(String pubkey) {
+    RowMapper<NostrUserDetails> mapper = (rs, rowNum) -> {
+      String username1 = rs.getString(1);
+      String password = rs.getString(2);
+      String pubkey1 = rs.getString(3);
+      boolean enabled = rs.getBoolean(4);
+      return new NostrUser(username1, password, pubkey1, enabled, true, true, true, AuthorityUtils.NO_AUTHORITIES);
+    };
+    List<NostrUserDetails> query = this.getJdbcTemplate().query(this.usersByPubkeyQuery, mapper, new Object[]{pubkey});
     return query;
   }
 

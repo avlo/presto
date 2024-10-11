@@ -29,7 +29,7 @@ public class NostrUserDetailsServiceImpl extends NostrJdbcUserDetailsManager imp
   public NostrUserDetails createAuthUser(String username, String password, String pubKey) throws PreExistingUserException {
     NostrUserDetails authUser = createAuthUser(username, password, pubKey, NOSTR_DEFAULT_ROLE);
     createUser(authUser);
-    NostrUserDetails nostrUserDetails = loadUserByUsernameAndPubKey(username, pubKey);
+    NostrUserDetails nostrUserDetails = loadUserByPubKey(pubKey);
     return nostrUserDetails;
   }
 
@@ -51,8 +51,8 @@ public class NostrUserDetailsServiceImpl extends NostrJdbcUserDetailsManager imp
   }
 
   @Override
-  public NostrUserDetails loadUserByUsernameAndPubKey(String username, String pubKey) throws UsernameNotFoundException {
-    NostrUserDetails nostrUserDetails = super.loadUserByUsername(username);
+  public NostrUserDetails loadUserByPubKey(String pubKey) throws UsernameNotFoundException {
+    NostrUserDetails nostrUserDetails = super.loadUserByPubKey(pubKey);
     return nostrUserDetails;
   }
 }

@@ -97,6 +97,11 @@ public class NostrJdbcUserDetailsManager extends NostrJdbcDaoImpl implements Nos
     return query;
   }
 
+  protected List<NostrUserDetails> loadUsersByPubkey(String pubkey) {
+    List<NostrUserDetails> query = this.getJdbcTemplate().query(this.getUsersByPubkeyQuery(), this::mapToUser, new Object[]{pubkey});
+    return query;
+  }
+
   private NostrUserDetails mapToUser(ResultSet rs, int rowNum) throws SQLException {
     String userName = rs.getString(1);
     String password = rs.getString(2);
