@@ -37,16 +37,6 @@
     </dependency>
     <dependency>
       <groupId>com.prosilion.presto.lib</groupId>
-      <artifactId>core</artifactId>
-      <version>${project.parent.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.prosilion.presto.lib</groupId>
-      <artifactId>web</artifactId>
-      <version>${project.parent.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.prosilion.presto.lib</groupId>
       <artifactId>jpa</artifactId>
       <version>${project.parent.version}</version>
     </dependency>
