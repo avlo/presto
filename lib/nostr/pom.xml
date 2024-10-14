@@ -16,7 +16,7 @@
   <dependencies>
     <dependency>
       <groupId>com.prosilion.presto.starter</groupId>
-      <artifactId>jpa</artifactId>
+      <artifactId>web</artifactId>
       <version>${project.parent.version}</version>
     </dependency>
     <dependency>
