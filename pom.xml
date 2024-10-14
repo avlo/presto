@@ -49,8 +49,6 @@
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
     <commons-lang3.version>3.14.0</commons-lang3.version>
     <h2.version>2.2.222</h2.version>
-    <jakarta.servlet.jsp.jstl.version>3.0.1</jakarta.servlet.jsp.jstl.version>
-    <jakarta.servlet.jsp.jstl-api.version>3.0.0</jakarta.servlet.jsp.jstl-api.version>
     <java.version>17</java.version>
     <lombok.version>1.18.28</lombok.version>
     <maven-compiler-plugin.version>3.12.0</maven-compiler-plugin.version>
@@ -168,23 +166,6 @@
         <groupId>org.apache.tomcat.embed</groupId>
         <artifactId>tomcat-embed-jasper</artifactId>
         <version>${tomcat-embed-jasper.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>jakarta.servlet.jsp.jstl</groupId>
-        <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-        <version>${jakarta.servlet.jsp.jstl-api.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.taglibs</groupId>
-        <artifactId>taglibs-standard-impl</artifactId>
-        <version>${taglibs-standard-impl.version}</version>
-        <!--      <scope>runtime</scope>-->
-      </dependency>
-      <dependency>
-        <groupId>org.glassfish.web</groupId>
-        <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-        <version>${jakarta.servlet.jsp.jstl.version}</version>
       </dependency>
 
       <dependency>

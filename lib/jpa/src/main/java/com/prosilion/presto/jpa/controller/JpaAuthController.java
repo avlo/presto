@@ -50,6 +50,7 @@ public class JpaAuthController implements AuthController {
     }
   }
 
+  //  TODO: remove below
   @Override
   public String registration(NostrAppUserDtoIF nostrAppUserDtoIF, BindingResult result, Model model) {
     return null;

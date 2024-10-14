@@ -55,6 +55,7 @@ public class NostrAuthController implements AuthController {
     }
   }
 
+//  TODO: remove below
   @Override
   public String registration(AppUserDtoIF appUserDtoIF, BindingResult result, Model model) {
     return null;

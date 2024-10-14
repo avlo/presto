@@ -24,11 +24,6 @@ public class EditNostrUserController {
     this.exampleNostrUserService = exampleNostrUserService;
   }
 
-  @GetMapping("/welcome")
-  public String welcome(Model model) {
-    return "jsp/welcome";
-  }
-
   @GetMapping("/edit/{id}")
   public String showEditForm(Model model, @PathVariable("id") Long id)
       throws InvocationTargetException, IllegalAccessException {
