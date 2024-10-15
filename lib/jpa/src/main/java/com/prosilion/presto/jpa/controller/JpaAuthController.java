@@ -3,10 +3,8 @@ package com.prosilion.presto.jpa.controller;
 import com.prosilion.presto.security.PreExistingUserException;
 import com.prosilion.presto.security.entity.AppUserAuthUser;
 import com.prosilion.presto.security.service.AuthUserService;
-import com.prosilion.presto.web.controller.AuthController;
 import com.prosilion.presto.web.model.AppUserDto;
 import com.prosilion.presto.web.model.AppUserDtoIF;
-import com.prosilion.presto.web.model.NostrAppUserDtoIF;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Slf4j
-public class JpaAuthController implements AuthController {
+public class JpaAuthController {
   private final AuthUserService authUserService;
 
   public JpaAuthController(AuthUserService authUserService) {
@@ -48,11 +46,5 @@ public class JpaAuthController implements AuthController {
       model.addAttribute("user", appUserDto);
       return "redirect:/login";
     }
-  }
-
-  //  TODO: remove below
-  @Override
-  public String registration(NostrAppUserDtoIF nostrAppUserDtoIF, BindingResult result, Model model) {
-    return null;
   }
 }

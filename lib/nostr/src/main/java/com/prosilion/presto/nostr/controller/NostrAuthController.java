@@ -4,8 +4,6 @@ import com.prosilion.presto.nostr.dto.model.NostrAppUserDto;
 import com.prosilion.presto.nostr.service.NostrUserService;
 import com.prosilion.presto.security.PreExistingUserException;
 import com.prosilion.presto.security.entity.AppUserAuthUser;
-import com.prosilion.presto.web.controller.AuthController;
-import com.prosilion.presto.web.model.AppUserDtoIF;
 import com.prosilion.presto.web.model.NostrAppUserDtoIF;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
@@ -15,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Slf4j
-public class NostrAuthController implements AuthController {
+public class NostrAuthController {
   private final NostrUserService nostrUserService;
 
   public NostrAuthController(NostrUserService nostrUserService) {
@@ -53,11 +51,5 @@ public class NostrAuthController implements AuthController {
       model.addAttribute("user", nostrAppUserDto);
       return "redirect:/login";
     }
-  }
-
-//  TODO: remove below
-  @Override
-  public String registration(AppUserDtoIF appUserDtoIF, BindingResult result, Model model) {
-    return null;
   }
 }

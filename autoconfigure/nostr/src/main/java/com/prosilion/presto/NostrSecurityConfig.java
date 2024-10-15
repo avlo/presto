@@ -1,5 +1,6 @@
 package com.prosilion.presto;
 
+import com.prosilion.presto.nostr.controller.NostrAuthController;
 import com.prosilion.presto.nostr.service.NostrAppUserDtoService;
 import com.prosilion.presto.nostr.service.NostrAppUserDtoServiceImpl;
 import com.prosilion.presto.nostr.service.NostrUserDetailsService;
@@ -16,6 +17,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -25,17 +27,19 @@ import javax.sql.DataSource;
 
 @Slf4j
 @AutoConfiguration
+//@AutoConfigureBefore({WebCommonConfig.class, SecurityCoreConfig.class})
+@EnableWebSecurity
 public class NostrSecurityConfig {
 
-//  @Bean
-//  AuthController authController(NostrUserService nostrUserService) {
-//    return new NostrAuthController(nostrUserService);
-//  }
+  @Bean
+  NostrAuthController authController(NostrUserService nostrUserService) {
+    return new NostrAuthController(nostrUserService);
+  }
 
   @Bean
   @DependsOn("mvc")
   public SecurityFilterChain filterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc, AuthenticationSuccessHandler authenticationSuccessHandler) throws Exception {
-    log.info("Loading JPA - Endpoint authorization configuration");
+    log.info("Loading NOSTR - Endpoint authorization configuration");
     http.authorizeHttpRequests(authorize -> authorize
         .requestMatchers(mvc.pattern("/css/**")).permitAll()
         .requestMatchers(mvc.pattern("/images/**")).permitAll()
