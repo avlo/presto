@@ -1,6 +1,5 @@
 package com.prosilion.presto;
 
-import com.prosilion.presto.nostr.controller.NostrAuthController;
 import com.prosilion.presto.nostr.service.NostrAppUserDtoService;
 import com.prosilion.presto.nostr.service.NostrAppUserDtoServiceImpl;
 import com.prosilion.presto.nostr.service.NostrUserDetailsService;
@@ -27,14 +26,8 @@ import javax.sql.DataSource;
 
 @Slf4j
 @AutoConfiguration
-//@AutoConfigureBefore({WebCommonConfig.class, SecurityCoreConfig.class})
 @EnableWebSecurity
 public class NostrSecurityConfig {
-
-  @Bean
-  NostrAuthController authController(NostrUserService nostrUserService) {
-    return new NostrAuthController(nostrUserService);
-  }
 
   @Bean
   @DependsOn("mvc")
@@ -48,11 +41,11 @@ public class NostrSecurityConfig {
         .requestMatchers(mvc.pattern("/users/**")).hasRole("USER")
         .anyRequest().authenticated() // anyRequest() defines a rule chain for any request which did not match the previous rules
     ).formLogin(form -> form
-            .loginPage("/login")
-            .loginProcessingUrl("/loginuser")
-//				.defaultSuccessUrl("/users")
-            .successHandler(authenticationSuccessHandler)
-            .permitAll()
+        .loginPage("/login")
+        .loginProcessingUrl("/loginuser")
+        //				.defaultSuccessUrl("/users")
+        .successHandler(authenticationSuccessHandler)
+        .permitAll()
     ).logout(logout -> logout
         .logoutRequestMatcher(mvc.pattern("/logout")).permitAll()
     );

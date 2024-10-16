@@ -6,6 +6,8 @@ import com.prosilion.presto.security.PreExistingUserException;
 import com.prosilion.presto.security.entity.AppUserAuthUser;
 import com.prosilion.presto.web.model.NostrAppUserDtoIF;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +15,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Slf4j
+@Controller
 public class NostrAuthController {
   private final NostrUserService nostrUserService;
 
+  @Autowired
   public NostrAuthController(NostrUserService nostrUserService) {
     this.nostrUserService = nostrUserService;
   }

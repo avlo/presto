@@ -1,6 +1,5 @@
 package com.prosilion.presto;
 
-import com.prosilion.presto.jpa.controller.JpaAuthController;
 import com.prosilion.presto.security.service.AuthUserService;
 import com.prosilion.presto.web.model.AppUserDtoIF;
 import com.prosilion.presto.web.service.AppUserDtoService;
@@ -18,14 +17,7 @@ import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 @Slf4j
 @AutoConfiguration
 @EnableWebSecurity
-//@AutoConfigureBefore({WebCommonConfig.class, SecurityCoreConfig.class})
 public class JpaSecurityConfig {
-
-  //  TODO: inclusion of below causes nostr to fail
-  @Bean
-  JpaAuthController authController(AuthUserService authUserService) {
-    return new JpaAuthController(authUserService);
-  }
 
   @Bean
   @DependsOn("mvc")
@@ -38,11 +30,11 @@ public class JpaSecurityConfig {
         .requestMatchers(mvc.pattern("/users/**")).hasRole("USER")
         .anyRequest().authenticated() // anyRequest() defines a rule chain for any request which did not match the previous rules
     ).formLogin(form -> form
-            .loginPage("/login")
-            .loginProcessingUrl("/loginuser")
-//				.defaultSuccessUrl("/users")
-            .successHandler(authenticationSuccessHandler)
-            .permitAll()
+        .loginPage("/login")
+        .loginProcessingUrl("/loginuser")
+        //				.defaultSuccessUrl("/users")
+        .successHandler(authenticationSuccessHandler)
+        .permitAll()
     ).logout(logout -> logout
         .logoutRequestMatcher(mvc.pattern("/logout")).permitAll()
     );
