@@ -58,9 +58,7 @@
     <spring-boot.version>3.3.4</spring-boot.version>
     <spring-ldap-core.version>3.2.1</spring-ldap-core.version>
     <spring-security-ldap.version>6.2.1</spring-security-ldap.version>
-    <taglibs-standard-impl.version>1.2.5</taglibs-standard-impl.version>
     <thymeleaf-extras-springsecurity6.version>3.1.2.RELEASE</thymeleaf-extras-springsecurity6.version>
-    <tomcat-embed-jasper.version>10.1.18</tomcat-embed-jasper.version>
   </properties>
 
   <dependencyManagement>
@@ -161,11 +159,6 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-tomcat</artifactId>
         <version>${spring-boot.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.tomcat.embed</groupId>
-        <artifactId>tomcat-embed-jasper</artifactId>
-        <version>${tomcat-embed-jasper.version}</version>
       </dependency>
 
       <dependency>
