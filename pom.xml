@@ -47,7 +47,7 @@
     <!--        <azure-spring-cloud.version>6.0.0-beta.4</azure-spring-cloud.version>-->
     <azure-spring-cloud.version>5.8.0</azure-spring-cloud.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
-    <commons-lang3.version>3.14.0</commons-lang3.version>
+    <commons-lang3.version>3.17.0</commons-lang3.version>
     <h2.version>2.2.224</h2.version>
     <java.version>22</java.version>
     <lombok.version>1.18.30</lombok.version>
