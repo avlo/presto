@@ -24,6 +24,11 @@ public class JpaAuthController {
     this.authUserService = authUserService;
   }
 
+  @GetMapping({"/index.html", "/"})
+  public String redirectIndex() {
+    return "forward:/register";
+  }
+
   @GetMapping("/register")
   public String showRegistrationForm(Model model) {
     AppUserDtoIF user = new AppUserDto();

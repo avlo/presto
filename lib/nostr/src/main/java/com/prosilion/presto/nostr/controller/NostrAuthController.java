@@ -24,6 +24,11 @@ public class NostrAuthController {
     this.nostrUserService = nostrUserService;
   }
 
+  @GetMapping({"/index.html", "/"})
+  public String redirectIndex() {
+    return "forward:/register";
+  }
+
   //  @Override
   @GetMapping("/register")
   public String showRegistrationForm(Model model) {

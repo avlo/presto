@@ -23,24 +23,27 @@ public class JpaSecurityConfig {
   @DependsOn("mvc")
   public SecurityFilterChain filterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc, AuthenticationSuccessHandler authenticationSuccessHandler) throws Exception {
     log.info("Loading JPA - Endpoint authorization configuration");
+    http
 //        TODO: below should redirect http requests to https, but does not.  revisit
-    http.requiresChannel(channel -> channel
-        .anyRequest().requiresSecure()
-    ).authorizeHttpRequests(authorize -> authorize
-        .requestMatchers(mvc.pattern("/css/**")).permitAll()
-        .requestMatchers(mvc.pattern("/images/**")).permitAll()
-        .requestMatchers(mvc.pattern("/register")).permitAll()
-        .requestMatchers(mvc.pattern("/users/**")).hasRole("USER")
-        .anyRequest().authenticated() // anyRequest() defines a rule chain for any request which did not match the previous rules
-    ).formLogin(form -> form
-        .loginPage("/login")
-        .loginProcessingUrl("/loginuser")
-        //				.defaultSuccessUrl("/users")
-        .successHandler(authenticationSuccessHandler)
-        .permitAll()
-    ).logout(logout -> logout
-        .logoutRequestMatcher(mvc.pattern("/logout")).permitAll()
-    );
+        .requiresChannel(channel -> channel
+            .anyRequest().requiresSecure()
+        ).authorizeHttpRequests(authorize -> authorize
+            .requestMatchers(mvc.pattern("/")).permitAll()
+            .requestMatchers(mvc.pattern("/index.html")).permitAll()
+            .requestMatchers(mvc.pattern("/css/**")).permitAll()
+            .requestMatchers(mvc.pattern("/images/**")).permitAll()
+            .requestMatchers(mvc.pattern("/register")).permitAll()
+            .requestMatchers(mvc.pattern("/users/**")).hasRole("USER")
+            .anyRequest().authenticated() // anyRequest() defines a rule chain for any request which did not match the previous rules
+        ).formLogin(form -> form
+            .loginPage("/login")
+            .loginProcessingUrl("/loginuser")
+            //				.defaultSuccessUrl("/users")
+            .successHandler(authenticationSuccessHandler)
+            .permitAll()
+        ).logout(logout -> logout
+            .logoutRequestMatcher(mvc.pattern("/logout")).permitAll()
+        );
     return http.build();
   }
 

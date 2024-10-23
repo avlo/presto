@@ -22,15 +22,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
-import org.springframework.web.socket.config.annotation.EnableWebSocket;
 
 import javax.sql.DataSource;
 
 @Slf4j
 @AutoConfiguration
 @EnableWebSecurity
-// TODO: below @EnableWebSocket may be superfluous since @EnableWebSocketSecurity exists two lines below.  revisit
-@EnableWebSocket
 @EnableWebSocketSecurity
 public class NostrSecurityConfig {
 
@@ -43,6 +40,8 @@ public class NostrSecurityConfig {
         .requiresChannel(channel -> channel
             .anyRequest().requiresSecure()
         ).authorizeHttpRequests(authorize -> authorize
+            .requestMatchers(mvc.pattern("/")).permitAll()
+            .requestMatchers(mvc.pattern("/index.html")).permitAll()
             .requestMatchers(mvc.pattern("/css/**")).permitAll()
             .requestMatchers(mvc.pattern("/images/**")).permitAll()
             .requestMatchers(mvc.pattern("/register")).permitAll()
