@@ -23,7 +23,10 @@ public class JpaSecurityConfig {
   @DependsOn("mvc")
   public SecurityFilterChain filterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc, AuthenticationSuccessHandler authenticationSuccessHandler) throws Exception {
     log.info("Loading JPA - Endpoint authorization configuration");
-    http.authorizeHttpRequests(authorize -> authorize
+//        TODO: below should redirect http requests to https, but does not.  revisit
+    http.requiresChannel(channel -> channel
+        .anyRequest().requiresSecure()
+    ).authorizeHttpRequests(authorize -> authorize
         .requestMatchers(mvc.pattern("/css/**")).permitAll()
         .requestMatchers(mvc.pattern("/images/**")).permitAll()
         .requestMatchers(mvc.pattern("/register")).permitAll()

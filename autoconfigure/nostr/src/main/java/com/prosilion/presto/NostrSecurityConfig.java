@@ -22,12 +22,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
 
 import javax.sql.DataSource;
 
 @Slf4j
 @AutoConfiguration
 @EnableWebSecurity
+// TODO: below @EnableWebSocket may be superfluous since @EnableWebSocketSecurity exists two lines below.  revisit
+@EnableWebSocket
 @EnableWebSocketSecurity
 public class NostrSecurityConfig {
 
@@ -35,22 +38,26 @@ public class NostrSecurityConfig {
   @DependsOn("mvc")
   public SecurityFilterChain filterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc, AuthenticationSuccessHandler authenticationSuccessHandler) throws Exception {
     log.info("Loading NOSTR - Endpoint authorization configuration");
-    http.authorizeHttpRequests(authorize -> authorize
-        .requestMatchers(mvc.pattern("/css/**")).permitAll()
-        .requestMatchers(mvc.pattern("/images/**")).permitAll()
-        .requestMatchers(mvc.pattern("/register")).permitAll()
-        .requestMatchers(mvc.pattern("/register-nostr")).permitAll()
-        .requestMatchers(mvc.pattern("/users/**")).hasRole("USER")
-        .anyRequest().authenticated() // anyRequest() defines a rule chain for any request which did not match the previous rules
-    ).formLogin(form -> form
-        .loginPage("/login")
-        .loginProcessingUrl("/loginuser")
-        //				.defaultSuccessUrl("/users")
-        .successHandler(authenticationSuccessHandler)
-        .permitAll()
-    ).logout(logout -> logout
-        .logoutRequestMatcher(mvc.pattern("/logout")).permitAll()
-    );
+    http
+//        TODO: below should redirect http requests to https, but does not.  revisit
+        .requiresChannel(channel -> channel
+            .anyRequest().requiresSecure()
+        ).authorizeHttpRequests(authorize -> authorize
+            .requestMatchers(mvc.pattern("/css/**")).permitAll()
+            .requestMatchers(mvc.pattern("/images/**")).permitAll()
+            .requestMatchers(mvc.pattern("/register")).permitAll()
+            .requestMatchers(mvc.pattern("/register-nostr")).permitAll()
+            .requestMatchers(mvc.pattern("/users/**")).hasRole("USER")
+            .anyRequest().authenticated() // anyRequest() defines a rule chain for any request which did not match the previous rules
+        ).formLogin(form -> form
+            .loginPage("/login")
+            .loginProcessingUrl("/loginuser")
+            //				.defaultSuccessUrl("/users")
+            .successHandler(authenticationSuccessHandler)
+            .permitAll()
+        ).logout(logout -> logout
+            .logoutRequestMatcher(mvc.pattern("/logout")).permitAll()
+        );
     return http.build();
   }
 
