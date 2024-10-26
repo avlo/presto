@@ -6,7 +6,6 @@
   <artifactId>web</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>lib-web</name>
-<!--  <packaging>war</packaging>-->
 
   <parent>
     <groupId>com.prosilion.presto</groupId>

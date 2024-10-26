@@ -6,7 +6,6 @@
   <artifactId>nostr</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>lib-nostr</name>
-  <!--  <packaging>war</packaging>-->
 
   <parent>
     <groupId>com.prosilion.presto</groupId>
