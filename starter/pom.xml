@@ -2,29 +2,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.prosilion.presto.starter</groupId>
-  <artifactId>web</artifactId>
+  <artifactId>starter</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>presto-web-spring-boot-starter</name>
-  <packaging>jar</packaging>
+  <name>starter</name>
+  <packaging>pom</packaging>
 
   <parent>
     <groupId>com.prosilion.presto</groupId>
-    <artifactId>starter</artifactId>
+    <artifactId>parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
   <dependencies>
     <dependency>
-      <groupId>com.prosilion.presto.autoconfigure</groupId>
-      <artifactId>web</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.prosilion.presto.lib</groupId>
-      <artifactId>web</artifactId>
-      <version>${project.version}</version>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
     </dependency>
   </dependencies>
 </project>
