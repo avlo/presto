@@ -28,7 +28,6 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 @ConditionalOnBean(CustomizableAppUserService.class)
 @EnableJpaRepositories(basePackages = "com.prosilion.presto.security.repository")
-// TODO: below should not be required
 @EntityScan(basePackages = "com.prosilion.presto.security.entity")
 public class SecurityCoreConfig {
   private static final Logger LOGGER = LoggerFactory.getLogger(SecurityCoreConfig.class);
