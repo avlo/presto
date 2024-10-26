@@ -10,87 +10,25 @@
 
   <parent>
     <groupId>com.prosilion.presto</groupId>
-    <artifactId>parent</artifactId>
+    <artifactId>sample-apps</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <relativePath>../../pom.xml</relativePath>
+    <relativePath>../pom.xml</relativePath>
   </parent>
-
-  <properties>
-    <starter.version>${project.parent.version}</starter.version>
-  </properties>
-
-<!--  <dependencyManagement>-->
-<!--    <dependencies>-->
-<!--      <dependency>-->
-<!--        <groupId>org.springframework.boot</groupId>-->
-<!--        <artifactId>spring-boot-dependencies</artifactId>-->
-<!--        <version>${spring-boot.version}</version>-->
-<!--        <type>pom</type>-->
-<!--        <scope>import</scope>-->
-<!--      </dependency>-->
-<!--    </dependencies>-->
-<!--  </dependencyManagement>-->
 
   <dependencies>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-devtools</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-security</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
-    <dependency>
       <groupId>com.prosilion.presto.starter</groupId>
       <artifactId>h2db</artifactId>
-      <version>${starter.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.prosilion.presto.starter</groupId>
-      <artifactId>core</artifactId>
-      <version>${starter.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.prosilion.presto.starter</groupId>
-      <artifactId>web</artifactId>
-      <version>${starter.version}</version>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>com.prosilion.presto.starter</groupId>
       <artifactId>jpa</artifactId>
-      <version>${starter.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-thymeleaf</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.thymeleaf.extras</groupId>
-      <artifactId>thymeleaf-extras-springsecurity6</artifactId>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.yaml</groupId>
-      <artifactId>snakeyaml</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>commons-beanutils</groupId>
-      <artifactId>commons-beanutils</artifactId>
     </dependency>
   </dependencies>
 </project>
