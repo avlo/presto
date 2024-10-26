@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.DependsOn;
@@ -24,7 +23,6 @@ import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 
 @AutoConfiguration
 @ConditionalOnClass(LdapTemplate.class)
-@AutoConfigureBefore(JpaSecurityConfig.class)
 public class LdapSecurityConfig {
   private static final Logger LOGGER = LoggerFactory.getLogger(LdapSecurityConfig.class);
   public static final String OBJECT_CLASS = "objectClass";
@@ -40,17 +38,17 @@ public class LdapSecurityConfig {
   public SecurityFilterChain filterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
     LOGGER.info("Loading LDAP - Endpoint authorization configuration");
     http.authorizeHttpRequests(authorize -> authorize
-       .requestMatchers(mvc.pattern("/css/**")).permitAll()
-       .requestMatchers(mvc.pattern("/images/**")).permitAll()
-       .requestMatchers(mvc.pattern("/users/**")).hasRole("USER")
-       .anyRequest().authenticated() // anyRequest() defines a rule chain for any request which did not match the previous rules
+        .requestMatchers(mvc.pattern("/css/**")).permitAll()
+        .requestMatchers(mvc.pattern("/images/**")).permitAll()
+        .requestMatchers(mvc.pattern("/users/**")).hasRole("USER")
+        .anyRequest().authenticated() // anyRequest() defines a rule chain for any request which did not match the previous rules
     ).formLogin(form -> form
-       .loginPage("/login")
-       .loginProcessingUrl("/loginuser")
-       .defaultSuccessUrl("/users")
-       .permitAll()
+        .loginPage("/login")
+        .loginProcessingUrl("/loginuser")
+        .defaultSuccessUrl("/users")
+        .permitAll()
     ).logout(logout -> logout
-       .logoutRequestMatcher(mvc.pattern("/logout")).permitAll()
+        .logoutRequestMatcher(mvc.pattern("/logout")).permitAll()
     );
     return http.build();
   }
