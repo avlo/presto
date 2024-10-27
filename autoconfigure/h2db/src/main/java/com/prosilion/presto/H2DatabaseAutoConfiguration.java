@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 
 import javax.sql.DataSource;
@@ -24,6 +25,7 @@ import javax.sql.DataSource;
  *    2) field values set to null
  */
 @EnableConfigurationProperties(H2DatabaseProperties.class)
+@Profile("local")
 public class H2DatabaseAutoConfiguration {
   private static final String DEFAULT_DB = "jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=TRUE";
   private static final String DEFAULT_DRIVER_CLASSNAME = "org.h2.Driver";

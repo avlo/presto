@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Profile;
 
 /**
  * bean-mapper for external-to-module application.properties file
@@ -12,6 +13,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  *  @EnableConfigurationProperties(H2DatabaseProperties.class) in H2DatabaseAutoConfiguration.java
  */
 @ConfigurationProperties(prefix = "spring.datasource")
+@Profile("local")
 @Getter
 @Setter
 @NoArgsConstructor
