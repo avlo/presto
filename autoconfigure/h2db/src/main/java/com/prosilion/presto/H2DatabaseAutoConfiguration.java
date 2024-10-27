@@ -1,17 +1,21 @@
 package com.prosilion.presto;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 
 import javax.sql.DataSource;
 
+@Slf4j
 @AutoConfiguration
 @ConditionalOnClass(H2Database.class)
 
@@ -36,6 +40,12 @@ public class H2DatabaseAutoConfiguration {
   @Autowired
   public H2DatabaseAutoConfiguration(H2DatabaseProperties h2DatabaseProperties) {
     this.dbProps = h2DatabaseProperties;
+  }
+
+  @Bean
+  public WebSecurityCustomizer webSecurityCustomizer() {
+    log.info("DB - H2 Console active at /h2-console/");
+    return web -> web.ignoring().requestMatchers(PathRequest.toH2Console());
   }
 
   /**

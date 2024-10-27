@@ -8,8 +8,6 @@ import com.prosilion.presto.security.service.AuthUserDetailsService;
 import com.prosilion.presto.security.service.AuthUserService;
 import com.prosilion.presto.security.service.AuthUserServiceImpl;
 import com.prosilion.presto.security.service.CustomizableAppUserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -28,19 +26,12 @@ import javax.sql.DataSource;
 @EnableJpaRepositories(basePackages = "com.prosilion.presto.security.repository")
 @EntityScan(basePackages = "com.prosilion.presto.security.entity")
 public class SecurityCoreConfig {
-  private static final Logger LOGGER = LoggerFactory.getLogger(SecurityCoreConfig.class);
 
   @Bean
 //	@ConditionalOnMissingBean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
-
-//  @Bean
-//  public WebSecurityCustomizer webSecurityCustomizer() {
-//    LOGGER.info("DB - H2 Console active at /h2-console/");
-//    return web -> web.ignoring().requestMatchers(PathRequest.toH2Console());
-//  }
 
   @Bean(name = "userDetailsService")
   @ConditionalOnMissingBean(name = "userDetailsService")

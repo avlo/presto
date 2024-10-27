@@ -24,32 +24,32 @@
     <!--    -->
     <!--    -->
     <!--  TODO: temp location for h2db, should be in profiles below  -->
-<!--    <dependency>-->
-<!--      <groupId>com.prosilion.presto.starter</groupId>-->
-<!--      <artifactId>h2db</artifactId>-->
-<!--      <version>${project.version}</version>-->
-<!--      &lt;!&ndash;          <scope>runtime</scope>&ndash;&gt;-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>com.h2database</groupId>-->
-<!--      <artifactId>h2</artifactId>-->
-<!--      <version>${h2.version}</version>-->
-<!--      &lt;!&ndash;          <scope>runtime</scope>&ndash;&gt;-->
-<!--    </dependency>-->
-
-    <!--  TODO: temp location for h2db, should be in profiles below  -->
     <dependency>
       <groupId>com.prosilion.presto.starter</groupId>
-      <artifactId>mysql</artifactId>
+      <artifactId>h2db</artifactId>
       <version>${project.version}</version>
       <!--          <scope>runtime</scope>-->
     </dependency>
     <dependency>
-      <groupId>com.mysql</groupId>
-      <artifactId>mysql-connector-j</artifactId>
-      <version>${mysql-connector-j.version}</version>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>${h2.version}</version>
       <!--          <scope>runtime</scope>-->
     </dependency>
+
+    <!--  TODO: temp location for h2db, should be in profiles below  -->
+<!--    <dependency>-->
+<!--      <groupId>com.prosilion.presto.starter</groupId>-->
+<!--      <artifactId>mysql</artifactId>-->
+<!--      <version>${project.version}</version>-->
+<!--      &lt;!&ndash;          <scope>runtime</scope>&ndash;&gt;-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>com.mysql</groupId>-->
+<!--      <artifactId>mysql-connector-j</artifactId>-->
+<!--      <version>${mysql-connector-j.version}</version>-->
+<!--      &lt;!&ndash;          <scope>runtime</scope>&ndash;&gt;-->
+<!--    </dependency>-->
     <!--    -->
     <!--    -->
   </dependencies>
