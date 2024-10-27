@@ -15,39 +15,54 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
 
-  <properties>
-<!--    <mysql-connector-j.version>8.4.0</mysql-connector-j.version>-->
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>com.prosilion.presto.starter</groupId>
       <artifactId>nostr</artifactId>
       <version>${project.version}</version>
     </dependency>
-    <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-      <version>${h2.version}</version>
-    </dependency>
-    <!--    <dependency>-->
-    <!--      <groupId>com.mysql</groupId>-->
-    <!--      <artifactId>mysql-connector-j</artifactId>-->
-    <!--      <version>${mysql-connector-j.version}</version>-->
-    <!--    </dependency>-->
   </dependencies>
+
   <profiles>
     <profile>
       <id>local</id>
       <properties>
         <spring.profiles.active>local</spring.profiles.active>
       </properties>
+      <dependencies>
+        <dependency>
+          <groupId>com.prosilion.presto.starter</groupId>
+          <artifactId>h2db</artifactId>
+          <version>${project.version}</version>
+          <!--          <scope>runtime</scope>-->
+        </dependency>
+        <dependency>
+          <groupId>com.h2database</groupId>
+          <artifactId>h2</artifactId>
+          <version>${h2.version}</version>
+<!--          <scope>runtime</scope>-->
+        </dependency>
+      </dependencies>
     </profile>
     <profile>
       <id>dev</id>
       <properties>
         <spring.profiles.active>dev</spring.profiles.active>
       </properties>
+      <dependencies>
+        <dependency>
+          <groupId>com.prosilion.presto.starter</groupId>
+          <artifactId>mysql</artifactId>
+          <version>${project.version}</version>
+          <!--          <scope>runtime</scope>-->
+        </dependency>
+        <dependency>
+          <groupId>com.mysql</groupId>
+          <artifactId>mysql-connector-j</artifactId>
+          <version>${mysql-connector-j.version}</version>
+<!--          <scope>runtime</scope>-->
+        </dependency>
+      </dependencies>
     </profile>
     <profile>
       <id>prod</id>

@@ -2,29 +2,29 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.prosilion.presto.autoconfigure</groupId>
-  <artifactId>h2db</artifactId>
+  <groupId>com.prosilion.presto.starter</groupId>
+  <artifactId>mysql</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>autoconfigure-h2db</name>
+  <name>presto-mysql-spring-boot-starter</name>
+  <packaging>jar</packaging>
 
   <parent>
     <groupId>com.prosilion.presto</groupId>
-    <artifactId>autoconfigure</artifactId>
+    <artifactId>starter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
   <dependencies>
     <dependency>
-      <groupId>com.prosilion.presto.lib</groupId>
-      <artifactId>h2db</artifactId>
+      <groupId>com.prosilion.presto.autoconfigure</groupId>
+      <artifactId>mysql</artifactId>
       <version>${project.version}</version>
-<!--      <optional>true</optional>-->
     </dependency>
     <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-<!--      <scope>runtime</scope>-->
+      <groupId>com.prosilion.presto.lib</groupId>
+      <artifactId>mysql</artifactId>
+      <version>${project.version}</version>
     </dependency>
   </dependencies>
 </project>

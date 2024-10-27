@@ -1,0 +1,24 @@
+package com.prosilion.presto;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
+/**
+ * bean-mapper for external-to-module application.properties file
+ *
+ * note: this class does not know if application.properties file exists.  that responsibility resides in
+ * @EnableConfigurationProperties(MySqlDatabaseProperties.class) in MySqlDatabaseAutoConfiguration.java
+ */
+@ConfigurationProperties(prefix = "spring.datasource")
+@Getter
+@Setter
+@NoArgsConstructor
+public class MySqlDatabaseProperties {
+  private String url;
+  private String driverClassName;
+  private String username;
+  private String password;
+  private String userSchemaDdlLocation;
+}
