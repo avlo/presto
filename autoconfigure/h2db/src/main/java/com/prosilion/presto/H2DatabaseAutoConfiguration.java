@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 
 import javax.sql.DataSource;
@@ -25,7 +24,6 @@ import javax.sql.DataSource;
  *    2) field values set to null
  */
 @EnableConfigurationProperties(H2DatabaseProperties.class)
-@Profile("local")
 public class H2DatabaseAutoConfiguration {
   private static final String DEFAULT_DB = "jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=TRUE";
   private static final String DEFAULT_DRIVER_CLASSNAME = "org.h2.Driver";
@@ -44,9 +42,9 @@ public class H2DatabaseAutoConfiguration {
    * GreetingConfig bean manually created here iff user-defined GreetingConfig bean does not exist.
    *
    * furthermore, this GreetingConfig instances field values are populated in either one of two ways:
-   *   1) via H2DatabaseProperties bean non-null fields (handled by @EnableConfigurationProperties(H2DatabaseProperties.class), above)
+   * 1) via H2DatabaseProperties bean non-null fields (handled by @EnableConfigurationProperties(H2DatabaseProperties.class), above)
    * otherwise, if any H2DatabaseProperties bean fields are null:
-   *   2) set explicit/default string values as seen below
+   * 2) set explicit/default string values as seen below
    *
    * careful/note: any H2DatabaseProperties bean with any/all fields pre-populated can only be done via EXTERNAL
    * application.properties file.  i.e., the "h2db-spring-boot-sample-app" application.properties file is EXTERNAL
