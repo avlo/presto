@@ -20,6 +20,19 @@
       <properties>
         <spring.profiles.active>local</spring.profiles.active>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+              <profiles>
+                <profile>local</profile>
+              </profiles>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
       <dependencies>
         <dependency>
           <groupId>com.prosilion.presto.starter</groupId>
@@ -40,6 +53,19 @@
       <properties>
         <spring.profiles.active>dev</spring.profiles.active>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+              <profiles>
+                <profile>dev</profile>
+              </profiles>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
       <dependencies>
         <dependency>
           <groupId>com.prosilion.presto.starter</groupId>
