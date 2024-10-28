@@ -17,6 +17,16 @@
 
   <dependencies>
     <dependency>
+      <groupId>com.prosilion.presto.starter</groupId>
+      <artifactId>core</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.prosilion.presto.starter</groupId>
+      <artifactId>web</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
       <groupId>com.prosilion.presto.autoconfigure</groupId>
       <artifactId>nostr</artifactId>
       <version>${project.version}</version>
