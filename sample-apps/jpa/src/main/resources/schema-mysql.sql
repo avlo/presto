@@ -1,3 +1,7 @@
+-- drop index ix_auth_username; (does not appear to be required)
+drop table if exists authorities;
+drop table if exists users;
+
 CREATE TABLE users (
                      username VARCHAR(50) NOT NULL,
                      password VARCHAR(100) NOT NULL,
