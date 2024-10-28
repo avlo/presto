@@ -8,13 +8,13 @@
   <name>sample-apps-jpa</name>
   <packaging>war</packaging>
 
-  <dependencies>
-    <dependency>
-      <groupId>com.prosilion.presto.starter</groupId>
-      <artifactId>jpa</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-  </dependencies>
+<!--  <dependencies>-->
+<!--    <dependency>-->
+<!--      <groupId>com.prosilion.presto.starter</groupId>-->
+<!--      <artifactId>jpa</artifactId>-->
+<!--      <version>${project.version}</version>-->
+<!--    </dependency>-->
+<!--  </dependencies>-->
 
   <parent>
     <groupId>com.prosilion.presto</groupId>
