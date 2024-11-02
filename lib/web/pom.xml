@@ -4,13 +4,13 @@
 
   <groupId>com.prosilion.presto.lib</groupId>
   <artifactId>web</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <name>lib-web</name>
 
   <parent>
     <groupId>com.prosilion.presto</groupId>
     <artifactId>lib</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 

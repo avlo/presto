@@ -4,14 +4,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.prosilion.presto.sample-apps</groupId>
   <artifactId>azure</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <name>sample-apps-azure</name>
   <packaging>war</packaging>
 
   <parent>
     <groupId>com.prosilion.presto</groupId>
     <artifactId>sample-apps</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 

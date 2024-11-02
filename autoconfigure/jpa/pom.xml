@@ -4,13 +4,13 @@
 
   <groupId>com.prosilion.presto.autoconfigure</groupId>
   <artifactId>jpa</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <name>autoconfigure-jpa</name>
 
   <parent>
     <groupId>com.prosilion.presto</groupId>
     <artifactId>autoconfigure</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 

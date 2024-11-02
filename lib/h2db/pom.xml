@@ -4,13 +4,13 @@
 
   <groupId>com.prosilion.presto.lib</groupId>
   <artifactId>h2db</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <name>lib-h2db</name>
 
   <parent>
     <groupId>com.prosilion.presto</groupId>
     <artifactId>lib</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
