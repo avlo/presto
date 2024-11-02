@@ -17,16 +17,6 @@
   <dependencies>
     <dependency>
       <groupId>com.prosilion.presto.lib</groupId>
-      <artifactId>core</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.prosilion.presto.lib</groupId>
-      <artifactId>web</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.prosilion.presto.lib</groupId>
       <artifactId>nostr</artifactId>
       <version>${project.version}</version>
     </dependency>

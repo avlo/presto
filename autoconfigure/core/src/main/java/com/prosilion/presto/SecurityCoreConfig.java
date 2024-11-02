@@ -28,7 +28,7 @@ import javax.sql.DataSource;
 public class SecurityCoreConfig {
 
   @Bean
-//	@ConditionalOnMissingBean
+  @ConditionalOnMissingBean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
