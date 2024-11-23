@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Registration and Login System + Nostr</title>
@@ -7,12 +7,28 @@
         rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
         crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script th:inline="javascript">
+      $(document).ready(function () {
+          $("#loginForm").submit(function (e) {
+              e.preventDefault();
+              var form = this;
+              setPubKeyAsync().then(function () {
+                  form.submit();
+              })
+          });
+      });
+      async function setPubKeyAsync() {
+          document.getElementById('pubkey').value = await window.nostr.getPublicKey();
+      }
+  </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" th:href="@{/index}">Registration and Login System + Nostr</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -24,7 +40,7 @@
     </div>
   </div>
 </nav>
-<br /><br /><br />
+<br/><br/><br/>
 <div class="container">
   <div class="row col-md-8 offset-md-2">
     <div class="card">
@@ -37,8 +53,7 @@
         </div>
       </div>
       <div class="card-body">
-        <form action="#" method="post" role="form" th:action="@{/register-nostr}" th:object="${user}">
-<!--          <form action="#" th:action="@{/contract/create}" th:object="${contract}" method="post">-->
+        <form th:id="loginForm" action="#" method="post" role="form" th:action="@{/register-nostr}" th:object="${user}">
           <div class="form-group mb-3">
             <label class="form-label">User Name</label>
             <input
@@ -47,12 +62,10 @@
                 name="username"
                 placeholder="Enter Username"
                 th:field="*{username}"
-                type="text"
-            />
-            <p th:errors = "*{username}" class="text-danger"
+                type="text"/>
+            <p th:errors="*{username}" class="text-danger"
                th:if="${#fields.hasErrors('username')}"></p>
           </div>
-
           <div class="form-group mb-3">
             <label class="form-label">Password</label>
             <input
@@ -61,28 +74,13 @@
                 name="password"
                 placeholder="Enter password"
                 th:field="*{password}"
-                type="password"
-            />
-            <p th:errors = "*{password}" class="text-danger"
+                type="password"/>
+            <p th:errors="*{password}" class="text-danger"
                th:if="${#fields.hasErrors('password')}"></p>
           </div>
-
-          <div class="form-group mb-3">
-            <label class="form-label">Nostr PubKey</label>
-            <input
-                class="form-control"
-                id="pubkey"
-                name="pubkey"
-                placeholder="Enter Nostr Public Key"
-                th:field="*{pubkey}"
-                type="text"
-            />
-            <p th:errors = "*{pubkey}" class="text-danger"
-               th:if="${#fields.hasErrors('pubkey')}"></p>
-          </div>
-
+          <input th:type="hidden" th:field="*{pubkey}" th:id="pubkey" th:name="pubkey" th:value="XXXXXX">
           <div class="form-group">
-            <button class="btn btn-primary" type="submit">Register</button>
+            <button class="btn btn-primary" th:type="submit">Register</button>
             <span>Already registered? <a th:href="@{/login}">Login here</a></span>
           </div>
         </form>
