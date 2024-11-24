@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Registration and Login System + Nostr</title>
+  <title>User Registration and Login System + Nostr</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
         rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -12,14 +12,22 @@
       $(document).ready(function () {
           $("#loginForm").submit(function (e) {
               e.preventDefault();
-              var form = this;
+              const form = this;
               setPubKeyAsync().then(function () {
                   form.submit();
               })
           });
       });
+
       async function setPubKeyAsync() {
-          document.getElementById('pubkey').value = await window.nostr.getPublicKey();
+          try {
+              document.getElementById('pubkey').value = await window.nostr.getPublicKey();
+          } catch (err) {
+              alert("Nostr Key-Signer Browser Plugin Required.  see:" + "\n\n" +
+                  "firefox:\n\t https://github.com/diegogurpegui/nos2x-fox" + "\n" +
+                  "chrome:\n\t https://github.com/fiatjaf/nos2x");
+              exit(1);
+          }
       }
   </script>
 </head>
