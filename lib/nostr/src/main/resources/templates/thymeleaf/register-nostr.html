@@ -23,7 +23,7 @@
           try {
               document.getElementById('pubkey').value = await window.nostr.getPublicKey();
           } catch (err) {
-              alert("Nostr Key-Signer Browser Plugin Required.  see:" + "\n\n" +
+              alert("Nostr Key-Signer Browser Plugin Required." + "\n\n" +
                   "firefox:\n\t https://github.com/diegogurpegui/nos2x-fox" + "\n" +
                   "chrome:\n\t https://github.com/fiatjaf/nos2x");
               exit(1);
