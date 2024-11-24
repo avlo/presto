@@ -4,14 +4,14 @@
 
   <groupId>com.prosilion.presto.starter</groupId>
   <artifactId>nostr</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.3-SNAPSHOT</version>
   <name>presto-nostr-spring-boot-starter</name>
   <packaging>jar</packaging>
 
   <parent>
     <groupId>com.prosilion.presto</groupId>
     <artifactId>starter</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 

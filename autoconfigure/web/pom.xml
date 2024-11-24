@@ -4,13 +4,13 @@
 
   <groupId>com.prosilion.presto.autoconfigure</groupId>
   <artifactId>web</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.3-SNAPSHOT</version>
   <name>autoconfigure-web</name>
 
   <parent>
     <groupId>com.prosilion.presto</groupId>
     <artifactId>autoconfigure</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 

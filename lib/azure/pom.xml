@@ -4,13 +4,13 @@
 
   <groupId>com.prosilion.presto.lib</groupId>
   <artifactId>azure</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.3-SNAPSHOT</version>
   <name>lib-azure</name>
 
   <parent>
     <groupId>com.prosilion.presto</groupId>
     <artifactId>lib</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
