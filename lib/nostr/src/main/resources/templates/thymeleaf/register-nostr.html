@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
   <title>User Registration and Login System + Nostr</title>
@@ -8,6 +8,8 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
         crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+
   <script th:inline="javascript">
       $(document).ready(function () {
           $("#loginForm").submit(function (e) {
@@ -30,6 +32,8 @@
           }
       }
   </script>
+
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -86,7 +90,7 @@
             <p th:errors="*{password}" class="text-danger"
                th:if="${#fields.hasErrors('password')}"></p>
           </div>
-          <input th:type="hidden" th:field="*{pubkey}" th:id="pubkey" th:name="pubkey" th:value="XXXXXX">
+          <input th:type="hidden" th:field="*{pubkey}" th:id="pubkey" th:name="pubkey">
           <div class="form-group">
             <button class="btn btn-primary" th:type="submit">Register</button>
             <span>Already registered? <a th:href="@{/login}">Login here</a></span>
