@@ -47,6 +47,7 @@
   </modules>
 
   <properties>
+    <java.version>21</java.version>
     <!--        <azure-spring-cloud.version>6.0.0-beta.4</azure-spring-cloud.version>-->
     <project.version>${version}</project.version>
     <azure-spring-cloud.version>5.8.0</azure-spring-cloud.version>
@@ -54,11 +55,10 @@
     <commons-lang3.version>3.17.0</commons-lang3.version>
     <h2.version>2.2.224</h2.version>
     <mysql-connector-j.version>9.1.0</mysql-connector-j.version>
-    <java.version>21</java.version>
     <lombok.version>1.18.30</lombok.version>
     <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
-    <maven.compiler.source>21</maven.compiler.source>
-    <maven.compiler.target>21</maven.compiler.target>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
     <snakeyaml.version>2.2</snakeyaml.version>
     <spring-boot.version>3.3.4</spring-boot.version>
     <spring-ldap-core.version>3.2.1</spring-ldap-core.version>
