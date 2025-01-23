@@ -4,16 +4,14 @@ import com.prosilion.presto.model.dto.ExampleJpaUserDto;
 import com.prosilion.presto.security.entity.AppUser;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Date;
-
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.commons.beanutils.BeanUtils;
+
+import java.util.Date;
 
 @Getter
 @Setter
@@ -37,10 +35,10 @@ public class ExampleJpaUser extends AppUser {
     return new ExampleJpaUser();
   }
 
-  public ExampleJpaUserDto convertToDto()
-      throws InvocationTargetException, IllegalAccessException {
+  public ExampleJpaUserDto convertToDto() {
     ExampleJpaUserDto exampleJpaUserDto = new ExampleJpaUserDto();
-    BeanUtils.copyProperties(exampleJpaUserDto, this);
+    exampleJpaUserDto.setCustomUserField(customUserField);
+    exampleJpaUserDto.setCustomDate(customDate);
     return exampleJpaUserDto;
   }
 }

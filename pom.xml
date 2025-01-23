@@ -10,6 +10,7 @@
   <packaging>pom</packaging>
 
   <modules>
+    <module>lib</module>
     <module>lib/h2db</module>
     <module>lib/mysql</module>
     <module>lib/core</module>
@@ -19,6 +20,7 @@
     <module>lib/nostr</module>
     <module>lib/azure</module>
 
+    <module>autoconfigure</module>
     <module>autoconfigure/h2db</module>
     <module>autoconfigure/mysql</module>
     <module>autoconfigure/core</module>
@@ -28,6 +30,7 @@
     <module>autoconfigure/nostr</module>
     <module>autoconfigure/azure</module>
 
+    <module>starter</module>
     <module>starter/h2db</module>
     <module>starter/mysql</module>
     <module>starter/core</module>
@@ -53,7 +56,6 @@
     <!--        <azure-spring-cloud.version>6.0.0-beta.4</azure-spring-cloud.version>-->
     <project.version>${version}</project.version>
     <azure-spring-cloud.version>5.8.0</azure-spring-cloud.version>
-    <commons-beanutils.version>1.9.4</commons-beanutils.version>
     <commons-lang3.version>3.17.0</commons-lang3.version>
     <h2.version>2.2.224</h2.version>
     <mysql-connector-j.version>9.1.0</mysql-connector-j.version>
@@ -164,11 +166,6 @@
         <groupId>org.yaml</groupId>
         <artifactId>snakeyaml</artifactId>
         <version>${snakeyaml.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>commons-beanutils</groupId>
-        <artifactId>commons-beanutils</artifactId>
-        <version>${commons-beanutils.version}</version>
       </dependency>
       <dependency>
         <groupId>org.thymeleaf.extras</groupId>

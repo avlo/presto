@@ -1,27 +1,25 @@
 package com.prosilion.presto.model.dto;
 
-import com.prosilion.presto.web.model.AppUserDto;
 import com.prosilion.presto.model.entity.ExampleJpaUser;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.Date;
-
+import com.prosilion.presto.web.model.AppUserDto;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.commons.beanutils.BeanUtils;
+
+import java.util.Date;
 
 @Getter
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
 public class ExampleJpaUserDto extends AppUserDto {
-	private String customUserField;
-	private Date customDate;
-	public ExampleJpaUser convertToExampleUser() throws InvocationTargetException, IllegalAccessException {
-		ExampleJpaUser exampleJpaUser = new ExampleJpaUser();
-		BeanUtils.copyProperties(exampleJpaUser, this);
-		return exampleJpaUser;
-	}
+  private String customUserField;
+  private Date customDate;
+  public ExampleJpaUser convertToExampleUser() {
+    ExampleJpaUser exampleJpaUser = new ExampleJpaUser();
+    exampleJpaUser.setCustomUserField(customUserField);
+    exampleJpaUser.setCustomDate(customDate);
+    return exampleJpaUser;
+  }
 }

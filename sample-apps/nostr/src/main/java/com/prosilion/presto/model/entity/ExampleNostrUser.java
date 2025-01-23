@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.commons.beanutils.BeanUtils;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -32,7 +31,7 @@ public class ExampleNostrUser extends AppUser {
   public ExampleNostrUserDto convertToDto()
       throws InvocationTargetException, IllegalAccessException {
     ExampleNostrUserDto exampleNostrUserDto = new ExampleNostrUserDto();
-    BeanUtils.copyProperties(exampleNostrUserDto, this);
+    exampleNostrUserDto.setPubKey(pubKey);
     return exampleNostrUserDto;
   }
 }

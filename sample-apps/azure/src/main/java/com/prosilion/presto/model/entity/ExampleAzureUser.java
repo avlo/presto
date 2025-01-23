@@ -4,12 +4,10 @@ import com.prosilion.presto.model.dto.ExampleAzureUserDto;
 import com.prosilion.presto.security.entity.AppUser;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
-import java.lang.reflect.InvocationTargetException;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.commons.beanutils.BeanUtils;
 
 @Getter
 @Setter
@@ -30,9 +28,9 @@ public class ExampleAzureUser extends AppUser {
     return new ExampleAzureUser();
   }
 
-  public ExampleAzureUserDto convertToDto() throws InvocationTargetException, IllegalAccessException {
+  public ExampleAzureUserDto convertToDto() {
     ExampleAzureUserDto exampleAzureUserDto = new ExampleAzureUserDto();
-    BeanUtils.copyProperties(exampleAzureUserDto, this);
+    exampleAzureUserDto.setCustomUserField(customUserField);
     return exampleAzureUserDto;
   }
 }
