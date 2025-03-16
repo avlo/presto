@@ -1,4 +1,4 @@
-rootProject.name = 'parent'
+rootProject.name = 'presto'
 
 include(':lib-h2db')
 include(':lib-mysql')
