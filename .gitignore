@@ -6,6 +6,11 @@ target/
 /logs
 **/.flattened-pom.xml
 
+gradle.properties
+gradle/
+gradlew
+gradlew.bat
+
 ### STS ###
 .apt_generated
 .classpath
