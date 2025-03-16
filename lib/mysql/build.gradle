@@ -3,3 +3,12 @@ plugins {
 }
 
 description = 'lib-mysql'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId = description
+            from(components.java)
+        }
+    }
+}

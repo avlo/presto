@@ -9,3 +9,13 @@ dependencies {
 }
 
 description = 'autoconfigure-ldap'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId = description
+            from(components.java)
+        }
+    }
+}
+

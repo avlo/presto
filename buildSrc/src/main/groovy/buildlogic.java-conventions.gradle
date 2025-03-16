@@ -13,6 +13,7 @@ repositories {
 
 group = 'com.prosilion.presto'
 version = '0.0.3-SNAPSHOT'
+description = 'presto'
 java.sourceCompatibility = JavaVersion.VERSION_21
 java.targetCompatibility = JavaVersion.VERSION_21
 
@@ -25,4 +26,12 @@ subprojects {
             }
         }
     }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Javadoc).configureEach {
+    options.encoding = 'UTF-8'
 }

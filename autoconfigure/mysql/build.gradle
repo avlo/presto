@@ -3,3 +3,12 @@ plugins {
 }
 
 description = 'autoconfigure-mysql'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId = description
+            from(components.java)
+        }
+    }
+}

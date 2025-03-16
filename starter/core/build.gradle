@@ -8,3 +8,12 @@ dependencies {
 }
 
 description = 'presto-core-spring-boot-starter'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId = description
+            from(components.java)
+        }
+    }
+}

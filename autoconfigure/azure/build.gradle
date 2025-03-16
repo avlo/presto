@@ -9,3 +9,12 @@ dependencies {
 }
 
 description = 'autoconfigure-azure'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId = description
+            from(components.java)
+        }
+    }
+}

@@ -7,3 +7,12 @@ dependencies {
 }
 
 description = 'lib-azure'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId = description
+            from(components.java)
+        }
+    }
+}

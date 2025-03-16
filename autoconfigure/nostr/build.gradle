@@ -7,3 +7,12 @@ dependencies {
 }
 
 description = 'autoconfigure-nostr'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId = description
+            from(components.java)
+        }
+    }
+}

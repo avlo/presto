@@ -3,3 +3,13 @@ plugins {
 }
 
 description = 'lib-h2db'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId = description
+            from(components.java)
+        }
+    }
+}
+

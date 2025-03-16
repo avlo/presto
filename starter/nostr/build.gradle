@@ -7,3 +7,12 @@ dependencies {
 }
 
 description = 'presto-nostr-spring-boot-starter'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId = description
+            from(components.java)
+        }
+    }
+}

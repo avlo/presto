@@ -7,3 +7,12 @@ dependencies {
 }
 
 description = 'autoconfigure-core'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId = description
+            from(components.java)
+        }
+    }
+}

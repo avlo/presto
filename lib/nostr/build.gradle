@@ -3,8 +3,16 @@ plugins {
 }
 
 dependencies {
-    api project('lib-web')
     api project(':lib-web')
 }
 
 description = 'lib-nostr'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId = description
+            from(components.java)
+        }
+    }
+}
