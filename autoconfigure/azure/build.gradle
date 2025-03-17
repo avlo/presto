@@ -2,13 +2,13 @@ plugins {
     id 'buildlogic.java-conventions'
 }
 
+description = 'autoconfigure-azure'
+
 dependencies {
     api project(':lib-core')
     api project(':lib-web')
     api project(':lib-azure')
 }
-
-description = 'autoconfigure-azure'
 
 publishing {
     publications {
@@ -17,8 +17,4 @@ publishing {
             from(components.java)
         }
     }
-}
-
-bootJar {
-    enabled = false
 }

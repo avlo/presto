@@ -2,11 +2,14 @@ plugins {
     id 'buildlogic.java-conventions'
 }
 
-dependencies {
-    api project(':lib-web')
-}
-
 description = 'lib-ldap'
+
+dependencies {
+    def springSecurityLdap = '6.2.1'
+    api project(':lib-web')
+    
+    implementation 'org.springframework.security:spring-security-ldap:' + springSecurityLdap 
+}
 
 publishing {
     publications {

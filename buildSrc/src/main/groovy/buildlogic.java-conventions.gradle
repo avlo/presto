@@ -24,15 +24,15 @@ repositories {
 
 dependencies {
     def springBootVersion = '3.4.3'
+    
     def apacheCommonsLang3 = '3.17.0'
-    def jacksonModuleAfterburner = '2.18.3'
-    def googleGuava = '33.2.1-jre'
-    def bouncyCastle = '1.80'
     def awaitility = '4.2.0'
+    def azureActiveDirectory = '5.8.0'
+    def googleGuava = '33.2.1-jre'
+    def h2 = '2.2.224'
+    def jacksonModuleAfterburner = '2.18.3'
     def lombok = '1.18.36'
     def springIntegrationSecurity= '6.2.9'
-    def h2Version = '2.2.224'
-    def azureADVersion = '5.8.0'
 
     implementation 'org.springframework.boot:spring-boot-starter:' + springBootVersion
     implementation 'org.springframework.boot:spring-boot-devtools:' + springBootVersion
@@ -43,17 +43,16 @@ dependencies {
     
     implementation 'org.springframework.boot:spring-boot-starter-security:' + springBootVersion
     implementation 'org.springframework.integration:spring-integration-security:' + springIntegrationSecurity
+    
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:' + springBootVersion
-
-    implementation 'com.azure.spring:spring-cloud-azure-starter-active-directory:' + azureADVersion
+    implementation 'com.azure.spring:spring-cloud-azure-starter-active-directory:' + azureActiveDirectory
 
     annotationProcessor 'org.springframework.boot:spring-boot-autoconfigure:' + springBootVersion
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:' + springBootVersion
 
-    implementation 'com.h2database:h2:' + h2Version
+    implementation 'com.h2database:h2:' + h2
     
     implementation 'org.apache.commons:commons-lang3:' + apacheCommonsLang3
-    implementation group: 'org.bouncycastle', name: 'bcprov-jdk18on', version: bouncyCastle
     implementation 'com.fasterxml.jackson.module:jackson-module-afterburner:' + jacksonModuleAfterburner
     implementation 'com.google.guava:guava:' + googleGuava
     testImplementation 'org.awaitility:awaitility:' + awaitility
@@ -62,6 +61,10 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:' + lombok
     testImplementation 'org.projectlombok:lombok:' + lombok
     testAnnotationProcessor 'org.projectlombok:lombok:' + lombok
+}
+
+tasks.bootJar { 
+    enabled = false 
 }
 
 java {

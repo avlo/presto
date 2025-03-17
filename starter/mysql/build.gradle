@@ -2,12 +2,12 @@ plugins {
     id 'buildlogic.java-conventions'
 }
 
+description = 'presto-mysql-spring-boot-starter'
+
 dependencies {
     api project(':autoconfigure-mysql')
     api project(':lib-mysql')
 }
-
-description = 'presto-mysql-spring-boot-starter'
 
 publishing {
     publications {

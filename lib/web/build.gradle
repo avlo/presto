@@ -2,11 +2,11 @@ plugins {
     id 'buildlogic.java-conventions'
 }
 
+description = 'lib-web'
+
 dependencies {
     api project(':lib-core')
 }
-
-description = 'lib-web'
 
 publishing {
     publications {

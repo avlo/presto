@@ -2,12 +2,12 @@ plugins {
     id 'buildlogic.java-conventions'
 }
 
+description = 'presto-ldap-spring-boot-starter'
+
 dependencies {
     api project(':autoconfigure-ldap')
     api project(':lib-ldap')
 }
-
-description = 'presto-ldap-spring-boot-starter'
 
 publishing {
     publications {

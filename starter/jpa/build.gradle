@@ -2,14 +2,14 @@ plugins {
     id 'buildlogic.java-conventions'
 }
 
+description = 'presto-jpa-spring-boot-starter'
+
 dependencies {
     api project(':starter-core')
     api project(':starter-web')
     api project(':autoconfigure-jpa')
     api project(':lib-jpa')
 }
-
-description = 'presto-jpa-spring-boot-starter'
 
 publishing {
     publications {

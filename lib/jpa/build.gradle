@@ -2,11 +2,12 @@ plugins {
     id 'buildlogic.java-conventions'
 }
 
+description = 'lib-jpa'
+
 dependencies {
     api project(':lib-web')
 }
 
-description = 'lib-jpa'
 
 publishing {
     publications {

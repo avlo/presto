@@ -2,12 +2,12 @@ plugins {
     id 'buildlogic.java-conventions'
 }
 
+description = 'presto-core-spring-boot-starter'
+
 dependencies {
     api project(':autoconfigure-core')
     api project(':lib-h2db')
 }
-
-description = 'presto-core-spring-boot-starter'
 
 publishing {
     publications {

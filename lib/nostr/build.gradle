@@ -2,11 +2,11 @@ plugins {
     id 'buildlogic.java-conventions'
 }
 
+description = 'lib-nostr'
+
 dependencies {
     api project(':lib-web')
 }
-
-description = 'lib-nostr'
 
 publishing {
     publications {

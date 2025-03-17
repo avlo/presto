@@ -1,12 +1,11 @@
 plugins {
-    id 'java'
     id 'java-library'
     id 'groovy-gradle-plugin'
 }
 
 group = 'com.prosilion.presto'
 version = '0.0.3-SNAPSHOT'
-description = 'presto'
+//description = 'presto'
 
 configurations {
     compileOnly {

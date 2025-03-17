@@ -2,11 +2,12 @@ plugins {
     id 'buildlogic.java-conventions'
 }
 
+description = 'lib-azure'
+
 dependencies {
     api project(':lib-web')
 }
 
-description = 'lib-azure'
 
 publishing {
     publications {

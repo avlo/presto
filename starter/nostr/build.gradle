@@ -2,11 +2,11 @@ plugins {
     id 'buildlogic.java-conventions'
 }
 
+description = 'presto-nostr-spring-boot-starter'
+
 dependencies {
     api project(':autoconfigure-web')
 }
-
-description = 'presto-nostr-spring-boot-starter'
 
 publishing {
     publications {

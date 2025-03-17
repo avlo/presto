@@ -2,13 +2,22 @@ plugins {
     id 'buildlogic.java-conventions'
 }
 
+description = 'autoconfigure-ldap'
+
 dependencies {
+    def springBootVersion = '3.4.3'
+    def springLdapCore = '3.2.1'
+    def springSecurityLdap = '6.2.1'
+
     api project(':lib-core')
     api project(':lib-web')
     api project(':lib-ldap')
+    
+    implementation 'org.springframework.boot:spring-boot-starter-data-ldap:' + springBootVersion
+    implementation 'org.springframework.ldap:spring-ldap-core:' + springLdapCore
+    implementation 'org.springframework.security:spring-security-ldap:' + springSecurityLdap
+    
 }
-
-description = 'autoconfigure-ldap'
 
 publishing {
     publications {
@@ -17,8 +26,4 @@ publishing {
             from(components.java)
         }
     }
-}
-
-bootJar {
-    enabled = false
 }

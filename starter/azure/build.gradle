@@ -2,12 +2,12 @@ plugins {
     id 'buildlogic.java-conventions'
 }
 
+description = 'presto-azure-spring-boot-starter'
+
 dependencies {
     api project(':autoconfigure-azure')
     api project(':autoconfigure-azure')
 }
-
-description = 'presto-azure-spring-boot-starter'
 
 publishing {
     publications {
