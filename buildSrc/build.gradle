@@ -5,7 +5,6 @@ plugins {
 
 group = 'com.prosilion.presto'
 version = '0.0.3-SNAPSHOT'
-//description = 'presto'
 
 configurations {
     compileOnly {
@@ -15,7 +14,6 @@ configurations {
 
 repositories {
     gradlePluginPortal()
-    mavenLocal()
     mavenCentral()
     maven {
         url = uri('https://repo.maven.apache.org/maven2/')
@@ -34,16 +32,3 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test:' + springBootVersion
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
-
-tasks.named('test') {
-    useJUnitPlatform()
-}
-
-//test {
-//    retry {
-////        failOnPassedAfterRetry = true
-//        maxRetries = 2
-////        maxFailures = 42
-//    }
-//}
-

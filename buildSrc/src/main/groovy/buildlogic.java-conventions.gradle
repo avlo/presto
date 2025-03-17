@@ -22,6 +22,18 @@ repositories {
     }
 }
 
+publishing {
+    publications {
+        presto(MavenPublication) {
+            from components.java
+        }
+    }
+
+    repositories {
+        mavenLocal()
+    }
+}
+
 dependencies {
     def springBootVersion = '3.4.3'
     
@@ -63,24 +75,13 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok:' + lombok
 }
 
-tasks.bootJar { 
-    enabled = false 
+tasks.bootJar {
+    enabled = false
 }
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
-    }
-}
-
-subprojects {
-    publishing {
-        publications {
-            mavenLocal(MavenPublication) {
-                artifactId = description
-                from(components.java)
-            }
-        }
     }
 }
 
@@ -91,3 +92,15 @@ tasks.withType(JavaCompile).configureEach {
 tasks.withType(Javadoc).configureEach {
     options.encoding = 'UTF-8'
 }
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+//test {
+//    retry {
+////        failOnPassedAfterRetry = true
+//        maxRetries = 2
+////        maxFailures = 42
+//    }
+//}
