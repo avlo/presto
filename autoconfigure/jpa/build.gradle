@@ -18,3 +18,7 @@ publishing {
         }
     }
 }
+
+bootJar {
+    enabled = false
+}

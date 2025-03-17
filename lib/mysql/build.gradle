@@ -4,6 +4,12 @@ plugins {
 
 description = 'lib-mysql'
 
+dependencies {
+    def mysqlConnectorJ= '9.1.0'
+
+    implementation 'com.mysql:mysql-connector-j:' + mysqlConnectorJ
+}
+
 publishing {
     publications {
         maven(MavenPublication) {

@@ -4,6 +4,14 @@ plugins {
 
 description = 'autoconfigure-mysql'
 
+dependencies {
+    api project(':lib-mysql')
+    
+    def mysqlConnectorJ= '9.1.0'
+    
+    implementation 'com.mysql:mysql-connector-j:' + mysqlConnectorJ
+}
+
 publishing {
     publications {
         maven(MavenPublication) {
@@ -11,4 +19,8 @@ publishing {
             from(components.java)
         }
     }
+}
+
+bootJar {
+    enabled = false
 }

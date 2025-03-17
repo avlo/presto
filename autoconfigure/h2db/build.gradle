@@ -8,6 +8,12 @@ dependencies {
 
 description = 'autoconfigure-h2db'
 
+dependencies {
+    def h2Version = '2.2.224'
+    
+    implementation 'com.h2database:h2:' + h2Version
+}
+
 publishing {
     publications {
         maven(MavenPublication) {
@@ -15,4 +21,8 @@ publishing {
             from(components.java)
         }
     }
+}
+
+bootJar {
+    enabled = false
 }
