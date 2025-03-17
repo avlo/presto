@@ -2,7 +2,6 @@ plugins {
     id 'java'
     id 'java-library'
     id 'maven-publish'
-    id 'io.freefair.lombok'
     id 'groovy-gradle-plugin'
     id 'org.springframework.boot'
 }
@@ -10,11 +9,14 @@ plugins {
 group = 'com.prosilion.presto'
 version = '0.0.3-SNAPSHOT'
 description = 'presto'
+
 java.sourceCompatibility = JavaVersion.VERSION_21
 java.targetCompatibility = JavaVersion.VERSION_21
 
 repositories {
+    gradlePluginPortal()
     mavenLocal()
+    mavenCentral()
     maven {
         url = uri('https://repo.maven.apache.org/maven2/')
     }
@@ -65,10 +67,20 @@ tasks.bootJar {
     enabled = false 
 }
 
-
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+subprojects {
+    publishing {
+        publications {
+            mavenLocal(MavenPublication) {
+                artifactId = description
+                from(components.java)
+            }
+        }
     }
 }
 
