@@ -24,6 +24,32 @@ repositories {
 
 publishing {
     publications {
+//        TODO: gradle vs maven publishing diffs
+/**
+ 
+        dir structure diffs:
+        maven:
+          /home/nick/.m2/repository/com/prosilion/presto/autoconfigure/azure/0.0.3-SNAPSHOT:
+        
+        gradle:
+          /home/nick/.m2/repository/com/prosilion/presto/autoconfigure-azure/0.0.3-SNAPSHOT:
+
+        dir content diffs::
+        maven:        
+         -rw-rw-r-- 1 nick nick 5759 Mar 16 23:16 azure-0.0.3-SNAPSHOT.jar
+         -rw-rw-r-- 1 nick nick 1448 Mar 15 22:53 azure-0.0.3-SNAPSHOT.pom
+         -rw-rw-r-- 1 nick nick  725 Mar 16 23:16 maven-metadata-local.xml
+         -rw-rw-r-- 1 nick nick  194 Mar 16 23:16 _remote.repositories
+ 
+        gradle
+         -rw-rw-r-- 1 nick nick 5807 Mar 16 23:04 autoconfigure-azure-0.0.3-SNAPSHOT.module
+         -rw-rw-r-- 1 nick nick 4371 Mar 16 23:04 autoconfigure-azure-0.0.3-SNAPSHOT-plain.jar
+         -rw-rw-r-- 1 nick nick 4383 Mar 16 23:04 autoconfigure-azure-0.0.3-SNAPSHOT.pom
+         -rw-rw-r-- 1 nick nick  931 Mar 16 23:04 maven-metadata-local.xml
+ 
+        also note above .pom size diffs
+ 
+ */
         presto(MavenPublication) {
             from components.java
         }
