@@ -6,12 +6,6 @@ plugins {
 group = 'com.prosilion.presto'
 version = '0.0.3-SNAPSHOT'
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
-
 repositories {
     gradlePluginPortal()
     mavenCentral()
@@ -31,4 +25,10 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
