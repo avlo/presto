@@ -18,12 +18,3 @@ dependencies {
     implementation 'org.springframework.security:spring-security-ldap:' + springSecurityLdap
     
 }
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            artifactId = description
-            from(components.java)
-        }
-    }
-}

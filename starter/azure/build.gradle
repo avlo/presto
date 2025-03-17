@@ -8,12 +8,3 @@ dependencies {
     api project(':autoconfigure-azure')
     api project(':autoconfigure-azure')
 }
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            artifactId = description
-            from(components.java)
-        }
-    }
-}

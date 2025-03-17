@@ -7,12 +7,3 @@ description = 'presto-nostr-spring-boot-starter'
 dependencies {
     api project(':autoconfigure-web')
 }
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            artifactId = description
-            from(components.java)
-        }
-    }
-}

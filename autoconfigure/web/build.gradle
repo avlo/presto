@@ -7,12 +7,3 @@ description = 'autoconfigure-web'
 dependencies {
     api project(':lib-web')
 }
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            artifactId = description
-            from(components.java)
-        }
-    }
-}

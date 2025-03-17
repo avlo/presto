@@ -8,12 +8,3 @@ dependencies {
     api project(':autoconfigure-h2db')
     api project(':lib-h2db')
 }
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            artifactId = description
-            from(components.java)
-        }
-    }
-}

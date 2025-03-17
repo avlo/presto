@@ -3,13 +3,3 @@ plugins {
 }
 
 description = 'lib-core'
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            artifactId = description
-            from(components.java)
-        }
-    }
-}
-

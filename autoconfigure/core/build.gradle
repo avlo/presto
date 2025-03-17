@@ -7,12 +7,3 @@ description = 'autoconfigure-core'
 dependencies {
     api project(':lib-core')
 }
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            artifactId = description
-            from(components.java)
-        }
-    }
-}

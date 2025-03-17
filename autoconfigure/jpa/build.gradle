@@ -9,12 +9,3 @@ dependencies {
     api project(':lib-web')
     api project(':lib-jpa')
 }
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            artifactId = description
-            from(components.java)
-        }
-    }
-}

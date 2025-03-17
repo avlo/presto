@@ -7,12 +7,3 @@ description = 'autoconfigure-nostr'
 dependencies {
     api project(':lib-nostr')
 }
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            artifactId = description
-            from(components.java)
-        }
-    }
-}

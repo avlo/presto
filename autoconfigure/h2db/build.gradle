@@ -10,16 +10,3 @@ dependencies {
     api project(':lib-h2db')
     implementation 'com.h2database:h2:' + h2Version
 }
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            artifactId = description
-            from(components.java)
-        }
-    }
-}
-
-bootJar {
-    enabled = false
-}

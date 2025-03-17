@@ -7,12 +7,3 @@ description = 'lib-web'
 dependencies {
     api project(':lib-core')
 }
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            artifactId = description
-            from(components.java)
-        }
-    }
-}
