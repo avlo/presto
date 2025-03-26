@@ -21,6 +21,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+// TODO: refactor
 public class NostrJdbcDaoImpl extends JdbcDaoSupport implements UserDetailsService, MessageSourceAware {
   public static final String NOSTR_USER_SCHEMA_DDL_LOCATION = "com/prosilion/presto/nostr/db/users.sql";
   public static final String DEF_USERS_BY_USERNAME_QUERY = "select username,password,pubkey,enabled from users where username = ?";

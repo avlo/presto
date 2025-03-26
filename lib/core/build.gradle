@@ -3,3 +3,7 @@ plugins {
 }
 
 description = 'lib-core'
+
+dependencies {
+    api project(':lib')
+}

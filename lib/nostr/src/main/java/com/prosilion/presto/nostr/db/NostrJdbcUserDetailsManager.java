@@ -31,6 +31,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+// TODO: replace copy w/ proper impl
 public class NostrJdbcUserDetailsManager extends NostrJdbcDaoImpl implements NostrUserDetailsManager, GroupManager {
   public static final String DEF_CREATE_USER_SQL = "insert into users (username, password, pubkey, enabled) values (?,?,?,?)";
   public static final String DEF_DELETE_USER_SQL = "delete from users where username = ?";

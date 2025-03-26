@@ -1,5 +1,17 @@
+buildscript {
+    repositories {
+        maven {
+            url = 'https://plugins.gradle.org/m2/'
+        }
+    }
+    dependencies {
+        classpath 'com.adarshr:gradle-test-logger-plugin:4.0.0'
+    }
+}
+
 rootProject.name = 'presto'
 
+include(':lib')
 include(':lib-azure')
 include(':lib-core')
 include(':lib-h2db')
@@ -8,7 +20,7 @@ include(':lib-ldap')
 include(':lib-mysql')
 include(':lib-nostr')
 include(':lib-web')
-project(":lib-web").projectDir = file('lib/web')
+project(":lib").projectDir = file('lib')
 project(":lib-azure").projectDir = file('lib/azure')
 project(":lib-core").projectDir = file('lib/core')
 project(":lib-h2db").projectDir = file('lib/h2db')
@@ -16,6 +28,7 @@ project(":lib-jpa").projectDir = file('lib/jpa')
 project(":lib-ldap").projectDir = file('lib/ldap')
 project(":lib-nostr").projectDir = file('lib/nostr')
 project(":lib-mysql").projectDir = file('lib/mysql')
+project(":lib-web").projectDir = file('lib/web')
 
 include(':autoconfigure-azure')
 include(':autoconfigure-core')
