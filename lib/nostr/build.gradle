@@ -1,7 +1,6 @@
 plugins {
     id 'presto.java-conventions'
     id 'groovy-gradle-plugin'
-    id 'org.gradle.test-retry'
 }
 
 description = 'lib-nostr'

@@ -4,6 +4,8 @@ plugins {
     id 'maven-publish'
     id 'org.springframework.boot'
     id 'io.spring.dependency-management'
+    id 'com.adarshr.test-logger'
+    id 'org.gradle.test-retry'
 }
 
 group = 'com.prosilion.presto'
@@ -42,6 +44,7 @@ dependencies {
     def jacksonModuleAfterburner = '2.18.3'
     def lombok = '1.18.36'
     def springIntegrationSecurity= '6.2.9'
+    def logger = '4.0.0'
 
     implementation 'org.springframework.boot:spring-boot-starter:' + springBootVersion
     implementation 'org.springframework.boot:spring-boot-devtools:' + springBootVersion
@@ -70,6 +73,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test:' + springBootVersion
     testImplementation 'org.projectlombok:lombok:' + lombok
     testImplementation 'org.awaitility:awaitility:' + awaitility
+    testImplementation 'com.adarshr:gradle-test-logger-plugin:' + logger
     testAnnotationProcessor 'org.projectlombok:lombok:' + lombok
 }
 
