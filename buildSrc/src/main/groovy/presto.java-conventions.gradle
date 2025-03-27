@@ -2,8 +2,8 @@ plugins {
     id 'java'
     id 'java-library'
     id 'maven-publish'
-    id 'groovy-gradle-plugin'
     id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
 }
 
 group = 'com.prosilion.presto'
@@ -33,7 +33,7 @@ publishing {
 
 dependencies {
     def springBootVersion = '3.4.3'
-    
+
     def apacheCommonsLang3 = '3.17.0'
     def awaitility = '4.2.0'
     def azureActiveDirectory = '5.8.0'
@@ -49,10 +49,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation:' + springBootVersion
     implementation 'org.springframework.boot:spring-boot-starter-websocket:' + springBootVersion
     implementation 'org.springframework.boot:spring-boot-starter-web:' + springBootVersion
-    
+
     implementation 'org.springframework.boot:spring-boot-starter-security:' + springBootVersion
     implementation 'org.springframework.integration:spring-integration-security:' + springIntegrationSecurity
-    
+
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:' + springBootVersion
     implementation 'com.azure.spring:spring-cloud-azure-starter-active-directory:' + azureActiveDirectory
 
@@ -60,7 +60,7 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:' + springBootVersion
 
     implementation 'com.h2database:h2:' + h2
-    
+
     implementation 'org.apache.commons:commons-lang3:' + apacheCommonsLang3
     implementation 'com.fasterxml.jackson.module:jackson-module-afterburner:' + jacksonModuleAfterburner
     implementation 'com.google.guava:guava:' + googleGuava
@@ -71,13 +71,25 @@ dependencies {
     testImplementation 'org.projectlombok:lombok:' + lombok
     testImplementation 'org.awaitility:awaitility:' + awaitility
     testAnnotationProcessor 'org.projectlombok:lombok:' + lombok
+}
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+tasks.test {
+    systemProperty("spring.profiles.active", "test")
+    useJUnitPlatform()
+}
+
+test {
+    filter {
+        excludeTestsMatching("*IT");
+    }
 }
 
 tasks.bootJar {
     enabled = false
+}
+
+tasks.named("jar") {
+    archiveClassifier = ''
 }
 
 java {
@@ -93,15 +105,3 @@ tasks.withType(JavaCompile).configureEach {
 tasks.withType(Javadoc).configureEach {
     options.encoding = 'UTF-8'
 }
-
-tasks.named('test') {
-    useJUnitPlatform()
-}
-
-//test {
-//    retry {
-////        failOnPassedAfterRetry = true
-//        maxRetries = 2
-////        maxFailures = 42
-//    }
-//}
