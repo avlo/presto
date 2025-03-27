@@ -1,11 +1,9 @@
 plugins {
     id 'presto.java-conventions'
-    id 'com.adarshr.test-logger'
+    id 'groovy-gradle-plugin'
     id 'org.gradle.test-retry'
 }
 
-group = 'com.prosilion.presto'
-version = '0.0.3-SNAPSHOT'
 description = 'lib-nostr'
 
 dependencies {
@@ -13,13 +11,8 @@ dependencies {
     api project(':lib-web')
 
     def springBootVersion = '3.4.3'
-    def awaitility = '4.2.0'
-    def lombok = '1.18.36'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test:' + springBootVersion
-    testImplementation 'org.projectlombok:lombok:' + lombok
-    testImplementation 'org.awaitility:awaitility:' + awaitility
-    testAnnotationProcessor 'org.projectlombok:lombok:' + lombok
 }
 
 tasks.register('integrationTest', Test) {

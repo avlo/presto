@@ -8,4 +8,9 @@ public class NostrUserServiceIT {
     void createUser() {
         assertEquals((2-1), 1);
     }
+
+    @Test
+    void createUser2() {
+        assertEquals((1-1), 1);
+    }
 }

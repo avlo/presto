@@ -17,7 +17,9 @@ class NostrAppUserDtoTest {
 		assertNotEquals(1, 2);
 	}
 
+    @Test
 	void getPassword() {
+        assertEquals(1, (3-1));
 	}
 
 	void getPubkey() {
