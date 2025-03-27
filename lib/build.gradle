@@ -15,3 +15,23 @@ dependencies {
     testImplementation 'org.awaitility:awaitility:' + awaitility
     testAnnotationProcessor 'org.projectlombok:lombok:' + lombok
 }
+
+tasks.register('integrationTest', Test) {
+    description = 'lib integration tests.'
+    group = 'verification'
+    systemProperty("spring.profiles.active", "test")
+    useJUnitPlatform()
+    filter {
+        excludeTestsMatching("*Test");
+        includeTestsMatching("*IT");
+    }
+}
+
+integrationTest {
+    retry {
+        failOnPassedAfterRetry = false
+        maxRetries = 1
+    }
+}
+
+check.dependsOn integrationTest

@@ -1,21 +1,16 @@
 plugins {
     id 'presto.java-conventions'
-    id 'groovy-gradle-plugin'
 }
 
 description = 'lib-nostr'
 
 dependencies {
-    api project(':lib')
+    implementation project(':lib')
     api project(':lib-web')
-
-    def springBootVersion = '3.4.3'
-
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:' + springBootVersion
 }
 
-tasks.register('integrationTest', Test) {
-    description = 'lib integration tests.'
+tasks.register('libNostrIntegrationTest', Test) {
+    description = 'lib-nostr integration tests.'
     group = 'verification'
     systemProperty("spring.profiles.active", "test")
     useJUnitPlatform()
@@ -25,11 +20,4 @@ tasks.register('integrationTest', Test) {
     }
 }
 
-integrationTest {
-    retry {
-        failOnPassedAfterRetry = false
-        maxRetries = 1
-    }
-}
-
-check.dependsOn integrationTest
+check.dependsOn libNostrIntegrationTest

@@ -17,6 +17,7 @@ class NostrAppUserDtoTest {
 		assertNotEquals(1, 2);
 	}
 
+//    TODO: recall, below test intentionally failing so-as-to-prove "gradle test" is executing properly
     @Test
 	void getPassword() {
         assertEquals(1, (3-1));
