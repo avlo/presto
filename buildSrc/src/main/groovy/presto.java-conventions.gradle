@@ -25,11 +25,8 @@ publishing {
     publications {
         presto(MavenPublication) {
             from components.java
+            groupId 'com.prosilion.presto'
         }
-    }
-
-    repositories {
-        mavenLocal()
     }
 }
 
