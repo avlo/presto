@@ -89,7 +89,7 @@ test {
 }
 
 tasks.register('integrationTest', Test) {
-    description = 'lib integration tests.'
+    description = 'all module integration tests'
     group = 'verification'
     systemProperty("spring.profiles.active", "test")
     useJUnitPlatform()
@@ -99,7 +99,7 @@ tasks.register('integrationTest', Test) {
     }
 }
 
-integrationTest {
+tasks.named('integrationTest') {
     retry {
         failOnPassedAfterRetry = false
         maxRetries = 1
@@ -107,7 +107,6 @@ integrationTest {
 }
 
 check.dependsOn integrationTest
-
 
 tasks.bootJar {
     enabled = false

@@ -2,8 +2,6 @@ plugins {
     id 'presto.java-conventions'
 }
 
-description = 'autoconfigure-h2db'
-
 dependencies {
     def h2Version = '2.2.224'
 

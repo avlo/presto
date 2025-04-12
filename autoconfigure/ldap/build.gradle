@@ -2,8 +2,6 @@ plugins {
     id 'presto.java-conventions'
 }
 
-description = 'autoconfigure-ldap'
-
 dependencies {
     def springBootVersion = '3.4.3'
     def springLdapCore = '3.2.1'

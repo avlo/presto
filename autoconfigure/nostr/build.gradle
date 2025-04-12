@@ -2,8 +2,6 @@ plugins {
     id 'presto.java-conventions'
 }
 
-description = 'autoconfigure-nostr'
-
 dependencies {
     api project(':lib-nostr')
 }

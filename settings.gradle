@@ -1,8 +1,6 @@
 buildscript {
     repositories {
-        maven {
-            url = 'https://plugins.gradle.org/m2/'
-        }
+        gradlePluginPortal()
     }
     dependencies {
         classpath 'com.adarshr:gradle-test-logger-plugin:4.0.0'
@@ -11,33 +9,53 @@ buildscript {
 
 rootProject.name = 'presto'
 
-//include(':lib')
+include(':lib-azure')
+project(':lib-azure').setProjectDir(file("lib/azure"))
+include ':lib-core'
+project(':lib-core').setProjectDir(file("lib/core"))
+include ':lib-h2db'
+project(':lib-h2db').setProjectDir(file("lib/h2db"))
+include ':lib-jpa'
+project(':lib-jpa').setProjectDir(file("lib/jpa"))
+include ':lib-ldap'
+project(':lib-ldap').setProjectDir(file("lib/ldap"))
+include ':lib-mysql'
+project(':lib-mysql').setProjectDir(file("lib/mysql"))
+include ':lib-nostr'
+project(':lib-nostr').setProjectDir(file("lib/nostr"))
+include ':lib-web'
+project(':lib-web').setProjectDir(file("lib/web"))
 
-include ':lib:azure'
-include ':lib:core'
-include ':lib:h2db'
-include ':lib:jpa'
-include ':lib:ldap'
-include ':lib:mysql'
-include ':lib:nostr'
-include ':lib:web'
+include ':autoconfigure-azure'
+project(':autoconfigure-azure').setProjectDir(file("autoconfigure/azure"))
+include ':autoconfigure-core'
+project(':autoconfigure-core').setProjectDir(file("autoconfigure/core"))
+include ':autoconfigure-h2db'
+project(':autoconfigure-h2db').setProjectDir(file("autoconfigure/h2db"))
+include ':autoconfigure-jpa'
+project(':autoconfigure-jpa').setProjectDir(file("autoconfigure/jpa"))
+include ':autoconfigure-ldap'
+project(':autoconfigure-ldap').setProjectDir(file("autoconfigure/ldap"))
+include ':autoconfigure-mysql'
+project(':autoconfigure-mysql').setProjectDir(file("autoconfigure/mysql"))
+include ':autoconfigure-nostr'
+project(':autoconfigure-nostr').setProjectDir(file("autoconfigure/nostr"))
+include ':autoconfigure-web'
+project(':autoconfigure-web').setProjectDir(file("autoconfigure/web"))
 
-include(':autoconfigure')
-//include(':autoconfigure-azure')
-//include(':autoconfigure-core')
-//include(':autoconfigure-h2db')
-//include(':autoconfigure-jpa')
-//include(':autoconfigure-ldap')
-//include(':autoconfigure-mysql')
-//include(':autoconfigure-nostr')
-//include(':autoconfigure-web')
-
-include(':starter')
-//include(':starter-azure')
-//include(':starter-core')
-//include(':starter-h2db')
-//include(':starter-jpa')
-//include(':starter-ldap')
-//include(':starter-mysql')
-//include(':starter-nostr')
-//include(':starter-web')
+include ':starter-azure'
+project(':starter-azure').setProjectDir(file("starter/azure"))
+include ':starter-core'
+project(':starter-core').setProjectDir(file("starter/core"))
+include ':starter-h2db'
+project(':starter-h2db').setProjectDir(file("starter/h2db"))
+include ':starter-jpa'
+project(':starter-jpa').setProjectDir(file("starter/jpa"))
+include ':starter-ldap'
+project(':starter-ldap').setProjectDir(file("starter/ldap"))
+include ':starter-mysql'
+project(':starter-mysql').setProjectDir(file("starter/mysql"))
+include ':starter-nostr'
+project(':starter-nostr').setProjectDir(file("starter/nostr"))
+include ':starter-web'
+project(':starter-web').setProjectDir(file("starter/web"))

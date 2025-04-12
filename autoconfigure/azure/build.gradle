@@ -2,10 +2,10 @@ plugins {
     id 'presto.java-conventions'
 }
 
-description = 'autoconfigure-azure'
-
 dependencies {
-    api project(':lib-core')
-    api project(':lib-web')
+//    api project(':lib:core')
+//    api project(':lib:web')
     api project(':lib-azure')
+
+//    implementation project(':lib:azure')
 }

@@ -2,8 +2,6 @@ plugins {
     id 'presto.java-conventions'
 }
 
-description = 'autoconfigure-core'
-
 dependencies {
     api project(':lib-core')
 }

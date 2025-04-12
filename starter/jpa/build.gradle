@@ -2,8 +2,6 @@ plugins {
     id 'presto.java-conventions'
 }
 
-description = 'presto-jpa-spring-boot-starter'
-
 dependencies {
     api project(':starter-core')
     api project(':starter-web')

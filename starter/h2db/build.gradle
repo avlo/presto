@@ -2,8 +2,6 @@ plugins {
     id 'presto.java-conventions'
 }
 
-description = 'presto-h2db-spring-boot-starter'
-
 dependencies {
     api project(':autoconfigure-h2db')
     api project(':lib-h2db')

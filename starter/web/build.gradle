@@ -2,8 +2,6 @@ plugins {
     id 'presto.java-conventions'
 }
 
-description = 'presto-web-spring-boot-starter'
-
 dependencies {
     api project(':autoconfigure-web')
     api project(':lib-web')

@@ -2,8 +2,6 @@ plugins {
     id 'presto.java-conventions'
 }
 
-description = 'autoconfigure-mysql'
-
 dependencies {
     api project(':lib-mysql')
     

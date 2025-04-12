@@ -2,8 +2,6 @@ plugins {
     id 'presto.java-conventions'
 }
 
-description = 'autoconfigure-jpa'
-
 dependencies {
     api project(':lib-core')
     api project(':lib-web')

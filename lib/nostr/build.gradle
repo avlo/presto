@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
 //    implementation project(':lib')
-    api project(':lib:web')
+    api project(':lib-web')
 }
 
 tasks.register('libNostrIntegrationTest', Test) {

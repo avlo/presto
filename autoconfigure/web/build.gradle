@@ -2,8 +2,6 @@ plugins {
     id 'presto.java-conventions'
 }
 
-description = 'autoconfigure-web'
-
 dependencies {
     api project(':lib-web')
 }
