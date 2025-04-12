@@ -1,9 +1,3 @@
 plugins {
     id 'presto.java-conventions'
 }
-
-description = 'lib-core'
-
-dependencies {
-    api project(':lib')
-}

@@ -2,11 +2,9 @@ plugins {
     id 'presto.java-conventions'
 }
 
-description = 'lib-nostr'
-
 dependencies {
-    implementation project(':lib')
-    api project(':lib-web')
+//    implementation project(':lib')
+    api project(':lib:web')
 }
 
 tasks.register('libNostrIntegrationTest', Test) {

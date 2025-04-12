@@ -2,8 +2,6 @@ plugins {
     id 'presto.java-conventions'
 }
 
-description = 'lib-azure'
-
 dependencies {
-    api project(':lib-web')
+    api project(':lib:web')
 }

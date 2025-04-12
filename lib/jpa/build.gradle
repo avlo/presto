@@ -2,8 +2,6 @@ plugins {
     id 'presto.java-conventions'
 }
 
-description = 'lib-jpa'
-
 dependencies {
-    api project(':lib-web')
+    api project(':lib:web')
 }

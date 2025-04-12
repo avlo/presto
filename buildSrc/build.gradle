@@ -3,7 +3,7 @@ plugins {
     id 'groovy-gradle-plugin'
 }
 
-group = 'com.prosilion.presto'
+group = 'com.prosilion'
 version = '0.0.3-SNAPSHOT'
 
 repositories {

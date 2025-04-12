@@ -8,7 +8,7 @@ plugins {
     id 'org.gradle.test-retry'
 }
 
-group = 'com.prosilion.presto'
+group = 'com.prosilion'
 version = '0.0.3-SNAPSHOT'
 description = 'presto'
 
@@ -77,8 +77,8 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok:' + lombok
 }
 
-tasks.test {
-//    systemProperty("spring.profiles.active", "test")
+tasks.named('test', Test) {
+    systemProperty("spring.profiles.active", "test")
     useJUnitPlatform()
 }
 
@@ -87,6 +87,27 @@ test {
         excludeTestsMatching("*IT");
     }
 }
+
+tasks.register('integrationTest', Test) {
+    description = 'lib integration tests.'
+    group = 'verification'
+    systemProperty("spring.profiles.active", "test")
+    useJUnitPlatform()
+    filter {
+        excludeTestsMatching("*Test");
+        includeTestsMatching("*IT");
+    }
+}
+
+integrationTest {
+    retry {
+        failOnPassedAfterRetry = false
+        maxRetries = 1
+    }
+}
+
+check.dependsOn integrationTest
+
 
 tasks.bootJar {
     enabled = false

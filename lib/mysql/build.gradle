@@ -2,8 +2,6 @@ plugins {
     id 'presto.java-conventions'
 }
 
-description = 'lib-mysql'
-
 dependencies {
     def mysqlConnectorJ= '9.1.0'
 

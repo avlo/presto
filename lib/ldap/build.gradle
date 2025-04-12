@@ -2,11 +2,9 @@ plugins {
     id 'presto.java-conventions'
 }
 
-description = 'lib-ldap'
-
 dependencies {
     def springSecurityLdap = '6.2.1'
-    api project(':lib-web')
+    api project(':lib:web')
     
     implementation 'org.springframework.security:spring-security-ldap:' + springSecurityLdap 
 }
