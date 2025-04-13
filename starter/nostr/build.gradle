@@ -3,5 +3,5 @@ plugins {
 }
 
 dependencies {
-    api project(':autoconfigure-web')
+    api project(':autoconfigure-nostr')
 }
