@@ -43,8 +43,10 @@
       </build>
       <dependencies>
         <dependency>
-          <groupId>com.prosilion.presto.starter</groupId>
-          <artifactId>h2db</artifactId>
+      <groupId>com.prosilion.presto</groupId> 
+<!--          <groupId>com.prosilion.presto.starter</groupId>-->
+      <artifactId>starter-h2db</artifactId>    
+<!--          <artifactId>h2db</artifactId>-->
           <version>${project.version}</version>
           <scope>runtime</scope>
         </dependency>
@@ -76,8 +78,10 @@
       </build>
       <dependencies>
         <dependency>
-          <groupId>com.prosilion.presto.starter</groupId>
-          <artifactId>mysql</artifactId>
+          <groupId>com.prosilion.presto</groupId> 
+<!--          <groupId>com.prosilion.presto.starter</groupId>-->
+          <artifactId>starter-mysql</artifactId> 
+<!--          <artifactId>mysql</artifactId>-->
           <version>${project.version}</version>
           <scope>runtime</scope>
         </dependency>

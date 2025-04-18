@@ -49,26 +49,26 @@ public class H2DatabaseAutoConfiguration {
   }
 
   /**
-   * GreetingConfig bean manually created here iff user-defined GreetingConfig bean does not exist.
+   * H2DatabaseConfigProperties bean manually created here iff user-defined H2DatabaseConfigProperties bean does not exist.
    *
-   * furthermore, this GreetingConfig instances field values are populated in either one of two ways:
+   * furthermore, this H2DatabaseConfigProperties instances field values are populated in either one of two ways:
    * 1) via H2DatabaseProperties bean non-null fields (handled by @EnableConfigurationProperties(H2DatabaseProperties.class), above)
    * otherwise, if any H2DatabaseProperties bean fields are null:
    * 2) set explicit/default string values as seen below
    *
-   * careful/note: any H2DatabaseProperties bean with any/all fields pre-populated can only be done via EXTERNAL
+   * careful/note: any H2DatabaseConfigProperties bean with any/all fields pre-populated can only be done via EXTERNAL
    * application.properties file.  i.e., the "h2db-spring-boot-sample-app" application.properties file is EXTERNAL
    */
   @Bean
   @ConditionalOnMissingBean
-  public H2DatabaseConfig h2DatabaseConfig() {
-    H2DatabaseConfig h2DatabaseConfig = new H2DatabaseConfig();
-    h2DatabaseConfig.put(H2DatabaseConfigParams.URL, go(dbProps.getUrl(), DEFAULT_DB));
-    h2DatabaseConfig.put(H2DatabaseConfigParams.DRIVER_CLASSNAME, go(dbProps.getDriverClassName(), DEFAULT_DRIVER_CLASSNAME));
-    h2DatabaseConfig.put(H2DatabaseConfigParams.USERNAME, go(dbProps.getUsername(), DEFAULT_USERNAME));
-    h2DatabaseConfig.put(H2DatabaseConfigParams.PASSWORD, go(dbProps.getPassword(), DEFAULT_PASSWORD));
-    h2DatabaseConfig.put(H2DatabaseConfigParams.USERS_DDL, go(dbProps.getUserSchemaDdlLocation(), DEFAULT_DDL));
-    return h2DatabaseConfig;
+  public H2DatabaseConfigProperties h2DatabaseConfigProperties() {
+    H2DatabaseConfigProperties h2DatabaseConfigProperties = new H2DatabaseConfigProperties();
+    h2DatabaseConfigProperties.put(H2DatabaseConfigParams.URL, go(dbProps.getUrl(), DEFAULT_DB));
+    h2DatabaseConfigProperties.put(H2DatabaseConfigParams.DRIVER_CLASSNAME, go(dbProps.getDriverClassName(), DEFAULT_DRIVER_CLASSNAME));
+    h2DatabaseConfigProperties.put(H2DatabaseConfigParams.USERNAME, go(dbProps.getUsername(), DEFAULT_USERNAME));
+    h2DatabaseConfigProperties.put(H2DatabaseConfigParams.PASSWORD, go(dbProps.getPassword(), DEFAULT_PASSWORD));
+    h2DatabaseConfigProperties.put(H2DatabaseConfigParams.USERS_DDL, go(dbProps.getUserSchemaDdlLocation(), DEFAULT_DDL));
+    return h2DatabaseConfigProperties;
   }
 
   private String go(String a, String b) {
@@ -77,8 +77,8 @@ public class H2DatabaseAutoConfiguration {
 
   @Bean
   @ConditionalOnMissingBean
-  public H2Database h2Database(H2DatabaseConfig h2DatabaseConfig) {
-    return new H2Database(h2DatabaseConfig);
+  public H2Database h2Database(H2DatabaseConfigProperties h2DatabaseConfigProperties) {
+    return new H2Database(h2DatabaseConfigProperties);
   }
 
   @Bean

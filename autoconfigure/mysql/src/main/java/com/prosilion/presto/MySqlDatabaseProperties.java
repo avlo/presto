@@ -18,7 +18,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class MySqlDatabaseProperties {
   private String url;
   private String driverClassName;
-  private String username;
+  private String username;  
   private String password;
   private String userSchemaDdlLocation;
 }

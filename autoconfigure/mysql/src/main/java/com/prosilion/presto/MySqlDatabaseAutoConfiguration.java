@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 @AutoConfiguration
 @ConditionalOnClass(MySqlDatabase.class)
 
-/**
+/*
  *  MySqlDatabaseProperties bean created (and autowired into this class) with its fields in either one of two states:
  *    1) fields properly populated iff:
  *      a) an application.properties file exists
@@ -25,7 +25,6 @@ import javax.sql.DataSource;
  */
 @EnableConfigurationProperties(MySqlDatabaseProperties.class)
 public class MySqlDatabaseAutoConfiguration {
-  //  TODO: H2 needs replace with MySql
   private static final String DEFAULT_DB = "jdbc:mysql://localhost:3306/presto_jpa_dev";
   private static final String DEFAULT_DRIVER_CLASSNAME = "com.mysql.cj.jdbc.Driver";
   private static final String DEFAULT_USERNAME = "serveruser";
@@ -46,18 +45,18 @@ public class MySqlDatabaseAutoConfiguration {
    * 2) set explicit/default string values as seen below
    *
    * careful/note: any MySqlDatabaseProperties bean with any/all fields pre-populated can only be done via EXTERNAL
-   * application.properties file.  i.e., the "h2db-spring-boot-sample-app" application.properties file is EXTERNAL
+   * application.properties file.  i.e., the "mysql-sample-app" application.properties file is EXTERNAL
    */
   @Bean
   @ConditionalOnMissingBean
-  public MySqlDatabaseConfig mySqlDatabaseConfig() {
-    MySqlDatabaseConfig mySqlDatabaseConfig = new MySqlDatabaseConfig();
-    mySqlDatabaseConfig.put(MySqlDatabaseConfigParams.URL, go(dbProps.getUrl(), DEFAULT_DB));
-    mySqlDatabaseConfig.put(MySqlDatabaseConfigParams.DRIVER_CLASSNAME, go(dbProps.getDriverClassName(), DEFAULT_DRIVER_CLASSNAME));
-    mySqlDatabaseConfig.put(MySqlDatabaseConfigParams.USERNAME, go(dbProps.getUsername(), DEFAULT_USERNAME));
-    mySqlDatabaseConfig.put(MySqlDatabaseConfigParams.PASSWORD, go(dbProps.getPassword(), DEFAULT_PASSWORD));
-    mySqlDatabaseConfig.put(MySqlDatabaseConfigParams.USERS_DDL, go(dbProps.getUserSchemaDdlLocation(), DEFAULT_DDL));
-    return mySqlDatabaseConfig;
+  public MySqlDatabaseConfigProperties mySqlDatabaseConfig() {
+    MySqlDatabaseConfigProperties mySqlDatabaseConfigProperties = new MySqlDatabaseConfigProperties();
+    mySqlDatabaseConfigProperties.put(MySqlDatabaseConfigParams.URL, go(dbProps.getUrl(), DEFAULT_DB));
+    mySqlDatabaseConfigProperties.put(MySqlDatabaseConfigParams.DRIVER_CLASSNAME, go(dbProps.getDriverClassName(), DEFAULT_DRIVER_CLASSNAME));
+    mySqlDatabaseConfigProperties.put(MySqlDatabaseConfigParams.USERNAME, go(dbProps.getUsername(), DEFAULT_USERNAME));
+    mySqlDatabaseConfigProperties.put(MySqlDatabaseConfigParams.PASSWORD, go(dbProps.getPassword(), DEFAULT_PASSWORD));
+    mySqlDatabaseConfigProperties.put(MySqlDatabaseConfigParams.USERS_DDL, go(dbProps.getUserSchemaDdlLocation(), DEFAULT_DDL));
+    return mySqlDatabaseConfigProperties;
   }
 
   private String go(String a, String b) {
@@ -66,8 +65,8 @@ public class MySqlDatabaseAutoConfiguration {
 
   @Bean
   @ConditionalOnMissingBean
-  public MySqlDatabase mySqlDatabase(MySqlDatabaseConfig mySqlDatabaseConfig) {
-    return new MySqlDatabase(mySqlDatabaseConfig);
+  public MySqlDatabase mySqlDatabase(MySqlDatabaseConfigProperties mySqlDatabaseConfigProperties) {
+    return new MySqlDatabase(mySqlDatabaseConfigProperties);
   }
 
   @Bean
